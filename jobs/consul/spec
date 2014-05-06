@@ -1,6 +1,7 @@
 ---
 name: consul
-packages: []
+packages:
+- consul
 templates:
   bin/monit_debugger: bin/monit_debugger
   bin/consul_ctl: bin/consul_ctl
