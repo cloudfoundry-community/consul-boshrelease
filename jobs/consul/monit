@@ -1,0 +1,5 @@
+check process consul
+  with pidfile /var/vcap/sys/run/consul/consul.pid
+  start program "/var/vcap/jobs/consul/bin/monit_debugger consul_ctl '/var/vcap/jobs/consul/bin/consul_ctl start'"
+  stop program "/var/vcap/jobs/consul/bin/monit_debugger consul_ctl '/var/vcap/jobs/consul/bin/consul_ctl stop'"
+  group vcap
