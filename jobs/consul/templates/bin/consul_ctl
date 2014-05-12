@@ -14,8 +14,11 @@ case $1 in
   start)
     pid_guard $PIDFILE $JOB_NAME
 
-    # TODO: Run some process
-    exec chpst -u vcap:vcap TODO \
+    exec chpst -u vcap:vcap consul agent \
+      -server                            \
+      -bootstrap                         \
+      -data-dir /var/vcap/store/consul   \
+      -bind $BIND_ADDR                   \
          >>$LOG_DIR/$JOB_NAME.stdout.log \
          2>>$LOG_DIR/$JOB_NAME.stderr.log
 

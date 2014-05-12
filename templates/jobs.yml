@@ -11,7 +11,7 @@ update:
 jobs:
   - name: consul_leader_z1
     template: consul
-    instances: 0
+    instances: 1
     resource_pool: small_z1
     networks: (( merge ))
   - name: consul_z1

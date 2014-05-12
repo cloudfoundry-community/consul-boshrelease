@@ -2,6 +2,7 @@
 name: consul
 packages:
 - consul
+- confd
 templates:
   bin/monit_debugger: bin/monit_debugger
   bin/consul_ctl: bin/consul_ctl
