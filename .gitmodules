@@ -1,0 +1,3 @@
+[submodule "src/consul/src/github.com/hashicorp/consul"]
+	path = src/consul/src/github.com/hashicorp/consul
+	url = https://github.com/hashicorp/consul.git
