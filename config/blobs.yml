@@ -1,1 +1,9 @@
---- {}
+---
+confd/confd_0.3.0_linux_amd64.tar.gz:
+  object_id: 4c3dd666-58e2-4b1c-ba50-cecb70bfc5d5
+  sha: 6ab9cffb5eb4ccbc12e33beb5c528a53f58fbc8f
+  size: 2242079
+consul/consul-0.2.0_linux_amd64.zip:
+  object_id: a0de30ff-8a4b-4e60-a4bb-ada3ddf21632
+  sha: 55710949519576b0a9db865eb86ce21477572fc0
+  size: 4074088
