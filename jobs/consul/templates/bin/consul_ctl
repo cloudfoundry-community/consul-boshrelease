@@ -15,8 +15,7 @@ case $1 in
 
     ulimit -v unlimited
 
-    # chpst -u vcap:vcap consul agent \
-    consul agent \
+    chpst -u vcap:vcap consul agent      \
       -server                            \
       -bootstrap                         \
       -data-dir /var/vcap/store/consul   \
