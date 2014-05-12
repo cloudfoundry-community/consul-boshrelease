@@ -1,0 +1,17 @@
+{
+  "data_dir": "/var/vcap/store/consul",
+  "node_name": "<%= spec.deployment %>-<%= name %>-<%= index %>",
+  <% if_p("consul.servers") do |servers| %>
+  <% end.else do %>
+  "bootstrap": true,
+  <% end %>
+  "server": true,
+  <% if_p("consul.bootstrap_address") do |bootstrap| %>
+  "start_join": ["<%= bootstrap %>"],
+  <% end %>
+
+  "bind_addr": "0.0.0.0",
+  "domain": "consul",
+  "leave_on_terminate": false,
+  "log_level": "INFO"
+}

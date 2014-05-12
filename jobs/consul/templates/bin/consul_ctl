@@ -15,12 +15,7 @@ case $1 in
 
     ulimit -v unlimited
 
-    chpst -u vcap:vcap consul agent      \
-      $SERVER \
-      $BOOTSTRAP_SERVER \
-      $JOIN \
-      -data-dir /var/vcap/store/consul   \
-      -bind $BIND_ADDR                   \
+    chpst -u vcap:vcap consul agent -config-file $JOB_DIR/config/consul.json \
          >>$LOG_DIR/$JOB_NAME.stdout.log \
          2>>$LOG_DIR/$JOB_NAME.stderr.log &
 
