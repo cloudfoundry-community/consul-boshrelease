@@ -6,10 +6,12 @@ packages:
 templates:
   bin/monit_debugger: bin/monit_debugger
   bin/consul_ctl: bin/consul_ctl
-  config/consul.conf.erb: config/consul.conf
   data/properties.sh.erb: data/properties.sh
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
 properties:
   consul.bootstrap_address:
     description: Hostname/IP to the bootstrap/master of the cluster
+
+  consul.servers:
+    description: Hostnames/IPs for consul servers

@@ -16,3 +16,18 @@ export DNS_ROOT=<%= spec.dns_domain_name %>
 export BIND_ADDR=<%= spec.networks.send(spec.networks.methods(false).first).ip %>
 
 export CONSUL_NODE_NAME=$DEPLOYMENT_NAME-$NAME-$JOB_INDEX
+
+# consul flags
+<% if_p("consul.servers") do |servers| %>
+<% end.else do %>
+export SERVER="-server"
+export BOOTSTRAP_SERVER="-bootstrap"
+<% end %>
+
+<% if_p("consul.bootstrap_address") do |bootstrap| %>
+export JOIN="-join <%= bootstrap %>"
+<% end %>
+
+export SERVER=${SERVER:-}
+export BOOTSTRAP_SERVER=${BOOTSTRAP_SERVER:-}
+export JOIN=${JOIN:-}
