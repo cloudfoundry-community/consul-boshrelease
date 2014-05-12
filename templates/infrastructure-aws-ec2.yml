@@ -2,24 +2,23 @@ meta:
   environment: (( merge ))
   dns_root: (( merge ))
   security_groups: (( merge ))
-  network_name: (( merge ))
 
   stemcell:
     name: bosh-aws-xen-ubuntu
     version: latest
 
 jobs:
-  - name: consul_leader_z1
+  - name: consul_bootstrap_z1
     instances: 1
     networks:
-      - name: (( meta.network_name ))
+      - name: consul1
   - name: consul_z1
     instances: 0
     networks:
-      - name: (( meta.network_name ))
+      - name: consul1
     properties:
       consul:
-        leader_address: (( "0.consul-leader-z1.consul1." meta.environment "." meta.dns_root ))
+        bootstrap_address: (( "0.consul-bootstrap-z1.consul1." meta.environment "." meta.dns_root ))
 
 compilation:
   cloud_properties:
@@ -34,7 +33,7 @@ networks:
   - name: floating
     type: vip
     cloud_properties: {}
-  - name: (( meta.network_name ))
+  - name: consul1
     type: dynamic
     cloud_properties:
       security_groups: (( meta.security_groups ))

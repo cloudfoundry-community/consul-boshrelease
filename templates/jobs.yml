@@ -9,7 +9,7 @@ update:
   serial: false
 
 jobs:
-  - name: consul_leader_z1
+  - name: consul_bootstrap_z1
     template: consul
     instances: 1
     resource_pool: small_z1
@@ -23,7 +23,8 @@ jobs:
       canaries: 10
     properties:
       consul:
-        leader_address: (( merge ))
+        bootstrap_address: (( merge ))
+        servers: ~
 
 networks: (( merge ))
 

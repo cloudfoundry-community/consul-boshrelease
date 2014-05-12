@@ -1,5 +1,5 @@
-# Example of how to do one thing when job is master/leader, and another thing if its follower/slave
+# Example of how to do one thing when job is master/bootstrap, and another thing if its follower/slave
 # See templates/infrastructure-warden.yml & templates/jobs.yml for where this value originates
-<% if_p("consul.leader_address") do |leader_address| %>
-leader: <%= leader_address %>
+<% if_p("consul.bootstrap_address") do |bootstrap_address| %>
+bootstrap: <%= bootstrap_address %>
 <% end %>

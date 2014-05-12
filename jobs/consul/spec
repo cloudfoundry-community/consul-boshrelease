@@ -11,5 +11,5 @@ templates:
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
 properties:
-  consul.leader_address:
-    description: Hostname/IP to the leader/master of the cluster
+  consul.bootstrap_address:
+    description: Hostname/IP to the bootstrap/master of the cluster
