@@ -1,5 +1,6 @@
 {
   "data_dir": "/var/vcap/store/consul",
+  "ui_dir": "/var/vcap/packages/consul-ui",
   "node_name": "<%= spec.deployment %>-<%= name %>-<%= index %>",
   <% if_p("consul.servers") do |servers| %>
   <% end.else do %>
