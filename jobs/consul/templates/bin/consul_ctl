@@ -13,7 +13,9 @@ case $1 in
   start)
     pid_guard $PIDFILE $JOB_NAME
 
-    # exec chpst -u vcap:vcap consul agent \
+    ulimit -v unlimited
+
+    # chpst -u vcap:vcap consul agent \
     consul agent \
       -server                            \
       -bootstrap                         \
