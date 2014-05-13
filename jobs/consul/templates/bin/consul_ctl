@@ -19,6 +19,8 @@ case $1 in
          >>$LOG_DIR/$JOB_NAME.stdout.log \
          2>>$LOG_DIR/$JOB_NAME.stderr.log &
 
+    # TODO -pid-file in future consul version
+
     # store pid in $PIDFILE
     echo $! > $PIDFILE
     ;;
