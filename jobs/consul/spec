@@ -7,7 +7,7 @@ packages:
 templates:
   bin/monit_debugger: bin/monit_debugger
   bin/consul_ctl: bin/consul_ctl
-  config/consul.json.erb: config/consul.json
+  consul/agent.json.erb: consul/agent.json
   data/properties.sh.erb: data/properties.sh
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh

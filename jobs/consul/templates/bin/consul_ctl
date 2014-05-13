@@ -7,6 +7,7 @@ set -u # report the usage of uninitialized variables
 source /var/vcap/jobs/consul/helpers/ctl_setup.sh 'consul'
 
 export LANG=en_US.UTF-8
+export GOMAXPROCS=2
 
 case $1 in
 
@@ -15,11 +16,17 @@ case $1 in
 
     ulimit -v unlimited
 
-    chpst -u vcap:vcap consul agent -config-file $JOB_DIR/config/consul.json \
+    # Load any config files in any collocated jobs
+    # This also loads the agent's own configuration
+    for dir in $(ls -d /var/vcap/jobs/*/consul); do
+      export CONFIG_DIR="${CONFIG_DIRS:-}-config-dir ${dir} "
+    done
+
+    chpst -u vcap:vcap consul agent $CONFIG_DIR \
          >>$LOG_DIR/$JOB_NAME.stdout.log \
          2>>$LOG_DIR/$JOB_NAME.stderr.log &
 
-    # TODO -pid-file in future consul version
+    # TODO: -pid-file in future consul version
 
     # store pid in $PIDFILE
     echo $! > $PIDFILE
