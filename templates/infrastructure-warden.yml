@@ -24,16 +24,14 @@ jobs:
         static_ips: (( static_ips(1, 2) ))
     properties:
       consul:
-        bootstrap_address: (( jobs.consul_bootstrap_z1.networks.consul1.static_ips.[0] ))
-        servers: (( jobs.consul_server_z1.networks.consul1.static_ips ))
+        servers: (( jobs.consul_bootstrap_z1.networks.consul1.static_ips ))
   - name: consul_client_z1
     instances: 0
     networks:
       - name: consul1
     properties:
       consul:
-        bootstrap_address: (( jobs.consul_bootstrap_z1.networks.consul1.static_ips.[0] ))
-        servers: (( jobs.consul_server_z1.networks.consul1.static_ips ))
+        servers: (( jobs.consul_bootstrap_z1.networks.consul1.static_ips ))
 
 
 compilation:

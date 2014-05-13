@@ -4,12 +4,10 @@
   "node_name": "<%= spec.deployment %>-<%= name %>-<%= index %>",
   <% if_p("consul.servers") do |servers| %>
   "server": <%= p("consul.server") %>,
+  "start_join": <%= servers.to_json %>,
   <% end.else do %>
   "bootstrap": true,
   "server": true,
-  <% end %>
-  <% if_p("consul.bootstrap_address") do |bootstrap| %>
-  "start_join": ["<%= bootstrap %>"],
   <% end %>
 
   "bind_addr": "0.0.0.0",

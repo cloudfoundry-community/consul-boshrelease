@@ -23,7 +23,6 @@ jobs:
       canaries: 10
     properties:
       consul:
-        bootstrap_address: (( merge ))
         server: true
         servers: ~
   - name: consul_client_z1
@@ -35,7 +34,6 @@ jobs:
       canaries: 10
     properties:
       consul:
-        bootstrap_address: (( merge ))
         servers: ~
 
 networks: (( merge ))

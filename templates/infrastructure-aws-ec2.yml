@@ -20,6 +20,7 @@ jobs:
       consul: &servers
         bootstrap_address: (( "0.consul-bootstrap-z1.consul1." meta.environment "." meta.dns_root ))
         servers:
+          - (( "0.consul-bootstrap-z1.consul1." meta.environment "." meta.dns_root ))
           - (( "0.consul-server-z1.consul1." meta.environment "." meta.dns_root ))
           - (( "1.consul-server-z1.consul1." meta.environment "." meta.dns_root ))
   - name: consul_client_z1
