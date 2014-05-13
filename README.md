@@ -1,7 +1,10 @@
-BOSH Release for consul
+BOSH release for consul
 =======================
 
-Either a cluster of consul servers OR upgrade an existing BOSH deployment to advertise or discover services.
+Use this BOSH release to either:
+
+- deploy a cluster of consul servers; OR
+- upgrade an existing BOSH deployment to advertise or discover services
 
 The [redis-boshrelease](https://github.com/cloudfoundry-community/redis-boshrelease) is an example BOSH release that can use this consul release to advertise itself to other consul consumers.
 
