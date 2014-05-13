@@ -19,7 +19,7 @@ case $1 in
     # Load any config files in any collocated jobs
     # This also loads the agent's own configuration
     for dir in $(ls -d /var/vcap/jobs/*/consul); do
-      export CONFIG_DIR="${CONFIG_DIRS:-}-config-dir ${dir} "
+      export CONFIG_DIR="${CONFIG_DIR:-}-config-dir ${dir} "
     done
 
     chpst -u vcap:vcap consul agent $CONFIG_DIR \
