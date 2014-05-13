@@ -14,7 +14,19 @@ jobs:
     instances: 1
     resource_pool: small_z1
     networks: (( merge ))
-  - name: consul_z1
+  - name: consul_server_z1
+    template: consul
+    instances: 0
+    resource_pool: small_z1
+    networks: (( merge ))
+    update:
+      canaries: 10
+    properties:
+      consul:
+        bootstrap_address: (( merge ))
+        server: true
+        servers: ~
+  - name: consul_client_z1
     template: consul
     instances: 0
     resource_pool: small_z1

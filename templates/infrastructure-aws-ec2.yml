@@ -12,7 +12,7 @@ jobs:
     instances: 1
     networks:
       - name: consul1
-  - name: consul_z1
+  - name: consul_server_z1
     instances: 0
     networks:
       - name: consul1

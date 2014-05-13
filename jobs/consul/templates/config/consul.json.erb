@@ -3,10 +3,11 @@
   "ui_dir": "/var/vcap/packages/consul-ui",
   "node_name": "<%= spec.deployment %>-<%= name %>-<%= index %>",
   <% if_p("consul.servers") do |servers| %>
+  "server": <%= p("consul.server") %>,
   <% end.else do %>
   "bootstrap": true,
-  <% end %>
   "server": true,
+  <% end %>
   <% if_p("consul.bootstrap_address") do |bootstrap| %>
   "start_join": ["<%= bootstrap %>"],
   <% end %>

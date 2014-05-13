@@ -15,5 +15,9 @@ properties:
   consul.bootstrap_address:
     description: Hostname/IP to the bootstrap/master of the cluster
 
+  consul.server:
+    description: Run in server mode; else in client mode
+    default: false
+
   consul.servers:
-    description: Hostnames/IPs for consul servers
+    description: Hostnames/IPs for consul servers; if missing, run in bootstrap mode
