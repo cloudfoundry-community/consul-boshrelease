@@ -13,12 +13,22 @@ jobs:
     networks:
       - name: consul1
   - name: consul_server_z1
-    instances: 0
+    instances: 2
     networks:
       - name: consul1
     properties:
-      consul:
+      consul: &servers
         bootstrap_address: (( "0.consul-bootstrap-z1.consul1." meta.environment "." meta.dns_root ))
+        servers:
+          - (( "0.consul-server-z1.consul1." meta.environment "." meta.dns_root ))
+          - (( "1.consul-server-z1.consul1." meta.environment "." meta.dns_root ))
+  - name: consul_client_z1
+    template: consul
+    instances: 1
+    networks:
+      - name: consul1
+    properties:
+      consul: *servers
 
 compilation:
   cloud_properties:
