@@ -6,5 +6,5 @@ set -u # report the usage of uninitialized variables
 # $BOSH_INSTALL_TARGET - where you copy/install files to be included in package
 
 mkdir -p $BOSH_INSTALL_TARGET/bin
-cp -a confd/confd-0.4.0-beta2-linux-amd64 $BOSH_INSTALL_TARGET/bin/confd
-chmod +x $BOSH_INSTALL_TARGET/bin/confd
+cp -a envconsul/envconsul_linux_amd64-0.1 $BOSH_INSTALL_TARGET/bin/envconsul
+chmod +x $BOSH_INSTALL_TARGET/bin/envconsul

@@ -4,6 +4,7 @@ packages:
 - consul
 - consul-ui
 - confd
+- envconsul
 templates:
   bin/monit_debugger: bin/monit_debugger
   bin/consul_ctl: bin/consul_ctl

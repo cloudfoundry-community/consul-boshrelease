@@ -1,0 +1,5 @@
+---
+name: envconsul
+dependencies: []
+files:
+- envconsul/envconsul_linux_amd64-0.1
