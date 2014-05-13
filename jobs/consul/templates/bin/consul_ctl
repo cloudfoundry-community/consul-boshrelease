@@ -24,7 +24,7 @@ case $1 in
     ;;
 
   stop)
-    kill_and_wait $PIDFILE
+    consul leave
 
     ;;
   *)
