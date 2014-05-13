@@ -1,6 +1,12 @@
-# BOSH Release for consul
+BOSH Release for consul
+=======================
 
-## Usage
+Either a cluster of consul servers OR upgrade an existing BOSH deployment to advertise or discover services.
+
+The [redis-boshrelease](https://github.com/cloudfoundry-community/redis-boshrelease) is an example BOSH release that can use this consul release to advertise itself to other consul consumers.
+
+Installation
+------------
 
 To use this bosh release, first upload it to your bosh:
 
@@ -11,14 +17,17 @@ cd consul-boshrelease
 bosh upload release releases/consul-1.yml
 ```
 
-For [bosh-lite](https://github.com/cloudfoundry/bosh-lite), you can quickly create a deployment manifest & deploy a cluster:
+Usage
+-----
+
+For [bosh-lite](https://github.com/cloudfoundry/bosh-lite), you can quickly create a deployment manifest & deploy a 3-node cluster:
 
 ```
 templates/make_manifest warden
 bosh -n deploy
 ```
 
-For AWS EC2, create a single VM:
+For AWS EC2, create a 3-node cluster:
 
 ```
 templates/make_manifest aws-ec2
@@ -31,7 +40,7 @@ For AWS & Openstack, the default deployment assumes there is a `default` securit
 
 Create a file `my-networking.yml`:
 
-``` yaml
+```yaml
 ---
 networks:
   - name: consul1

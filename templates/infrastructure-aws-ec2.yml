@@ -25,7 +25,7 @@ jobs:
           - (( "1.consul-server-z1.consul1." meta.environment "." meta.dns_root ))
   - name: consul_client_z1
     template: consul
-    instances: 1
+    instances: 0
     networks:
       - name: consul1
     properties:
