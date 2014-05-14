@@ -16,6 +16,12 @@ case $1 in
 
     ulimit -v unlimited
 
+    setcap cap_net_bind_service=+ep $(readlink -nf /var/vcap/packages/consul/bin/consul)
+
+    if ! grep -q 127.0.0.1 /etc/resolv.conf; then
+      sed -i -e '1i nameserver 127.0.0.1' /etc/resolv.conf
+    fi
+
     # Load any config files in any collocated jobs
     # This also loads the agent's own configuration
     for dir in $(ls -d /var/vcap/jobs/*/consul); do
