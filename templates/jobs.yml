@@ -10,10 +10,13 @@ update:
 
 jobs:
   - name: consul_bootstrap_z1
-    template: consul
+    templates:
+      - name: consul
+        release: consul
     instances: 1
     resource_pool: small_z1
     networks: (( merge ))
+    persistent_disk: 0
   - name: consul_server_z1
     template: consul
     instances: 0
@@ -25,8 +28,11 @@ jobs:
       consul:
         server: true
         servers: ~
+    persistent_disk: 0
   - name: consul_client_z1
-    template: consul
+    templates:
+      - name: consul
+        release: consul
     instances: 0
     resource_pool: small_z1
     networks: (( merge ))
