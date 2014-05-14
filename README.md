@@ -17,7 +17,7 @@ To use this bosh release, first upload it to your bosh:
 bosh target BOSH_HOST
 git clone https://github.com/cloudfoundry-community/consul-boshrelease.git
 cd consul-boshrelease
-bosh upload release releases/consul-1.yml
+bosh upload release releases/consul-2.yml
 ```
 
 Usage
