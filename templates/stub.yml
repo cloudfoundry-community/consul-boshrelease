@@ -4,6 +4,8 @@ meta:
   dns_root: microbosh
   security_groups:
     - consul
+  stemcell:
+    name: STEMCELL
 
 director_uuid: PLACEHOLDER-DIRECTOR-UUID
 

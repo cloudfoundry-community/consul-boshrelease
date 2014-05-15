@@ -2,8 +2,10 @@
 
 set -e
 
-infrastructure=$1
 template_prefix="consul"
+
+infrastructure=$1
+STEMCELL_OS=${STEMCELL_OS:-ubuntu}
 
 if [ "$infrastructure" != "aws-ec2" ] && \
     [ "$infrastructure" != "warden" ] ; then
@@ -33,15 +35,29 @@ if [[ $infrastructure = "aws-ec2" ]]; then
   fi
 fi
 
+function latest_uploaded_stemcell {
+  bosh stemcells | grep bosh | grep $STEMCELL_OS | awk -F'|' '{ print $2, $3 }' | sort -nr -k2 | head -n1 | awk '{ print $1 }'
+}
+
+STEMCELL=$(latest_uploaded_stemcell)
+if [[ "${STEMCELL}X" == "X" ]]; then
+  echo
+  echo "Uploading latest $DIRECTOR_CPI/$STEMCELL_OS stemcell..."
+  STEMCELL_URL=$(bosh public stemcells --full | grep $DIRECTOR_CPI | grep $STEMCELL_OS | sort -nr | head -n1 | awk '{ print $4 }')
+  bosh upload stemcell $STEMCELL_URL
+fi
+STEMCELL=${STEMCELL:-$(latest_uploaded_stemcell)}
+
 templates=$(dirname $0)
 release=$templates/..
 tmpdir=$release/tmp
 
 mkdir -p $tmpdir
 cp $templates/stub.yml $tmpdir/stub-with-uuid.yml
-echo $DIRECTOR_NAME $DIRECTOR_CPI $DIRECTOR_UUID
+echo $DIRECTOR_NAME $DIRECTOR_CPI $DIRECTOR_UUID $STEMCELL
 perl -pi -e "s/PLACEHOLDER-DIRECTOR-UUID/$DIRECTOR_UUID/g" $tmpdir/stub-with-uuid.yml
 perl -pi -e "s/NAME/$NAME/g" $tmpdir/stub-with-uuid.yml
+perl -pi -e "s/STEMCELL/$STEMCELL/g" $tmpdir/stub-with-uuid.yml
 
 spiff merge \
   $templates/deployment.yml \
