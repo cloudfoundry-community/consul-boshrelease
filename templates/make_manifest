@@ -39,7 +39,7 @@ function latest_uploaded_stemcell {
   bosh stemcells | grep bosh | grep $STEMCELL_OS | awk -F'|' '{ print $2, $3 }' | sort -nr -k2 | head -n1 | awk '{ print $1 }'
 }
 
-STEMCELL=$(latest_uploaded_stemcell)
+STEMCELL=${STEMCELL:-$(latest_uploaded_stemcell)}
 if [[ "${STEMCELL}X" == "X" ]]; then
   echo
   echo "Uploading latest $DIRECTOR_CPI/$STEMCELL_OS stemcell..."
