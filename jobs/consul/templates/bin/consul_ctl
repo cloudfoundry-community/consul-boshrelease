@@ -40,10 +40,15 @@ case $1 in
 
   stop)
     consul leave
-
     ;;
+
+  reload)
+    echo "Reloading consul configuration..."
+    chpst -u vcap:vcap kill -SIGHUP $(cat $PIDFILE)
+    ;;
+
   *)
-    echo "Usage: consul_ctl {start|stop}"
+    echo "Usage: consul_ctl {start|stop|reload}"
 
     ;;
 
