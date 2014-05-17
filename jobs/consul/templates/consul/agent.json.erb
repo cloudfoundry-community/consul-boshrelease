@@ -18,7 +18,7 @@
   <% if (networks = spec.networks.methods(false)) && dns = spec.networks.send(networks.first).dns %>
   "recursor": "<%= dns.first %>",
   <% else %>
-  "recursor": "<%= `grep nameserver /etc/resolv.conf | tail -n 1 | awk '{ print $2 }'`.strip %>",
+  "recursor": "8.8.8.8",
   <% end %>
   "domain": "consul",
   "leave_on_terminate": false,
