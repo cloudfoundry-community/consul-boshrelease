@@ -13,26 +13,17 @@ update:
 
 jobs:
   - name: consul_bootstrap_z1
-    instances: 1
-    networks:
-      - name: consul1
-        static_ips: (( static_ips(0) ))
-  - name: consul_server_z1
-    instances: 2
-    networks:
-      - name: consul1
-        static_ips: (( static_ips(1, 2) ))
-    properties:
-      consul:
-        servers: (( jobs.consul_bootstrap_z1.networks.consul1.static_ips ))
-  - name: consul_client_z1
     instances: 0
     networks:
       - name: consul1
+  - name: consul_server_z1
+    instances: 3
+    networks:
+      - name: consul1
+        static_ips: (( static_ips(1, 2, 3) ))
     properties:
       consul:
-        servers: (( jobs.consul_bootstrap_z1.networks.consul1.static_ips ))
-
+        servers: (( jobs.consul_server_z1.networks.consul1.static_ips ))
 
 compilation:
   cloud_properties:
@@ -75,7 +66,8 @@ networks:
     range: 10.244.4.12/30
     reserved:
     - 10.244.4.13
-    static: []
+    static:
+    - 10.244.4.14
   - cloud_properties:
       name: random
     range: 10.244.4.16/30
