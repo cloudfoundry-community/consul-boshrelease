@@ -22,17 +22,19 @@ case $1 in
       sed -i -e '1i nameserver 127.0.0.1' /etc/resolv.conf
     fi
 
+    mkdir -p /var/vcap/data/consul
+    chown vcap:vcap /var/vcap/data/consul
+    config_dir="-config-dir /var/vcap/data/consul "
+
     # Load any config files in any collocated jobs
     # This also loads the agent's own configuration
     for dir in $(ls -d /var/vcap/jobs/*/consul); do
-      export CONFIG_DIR="${CONFIG_DIR:-}-config-dir ${dir} "
+      export config_dir="${config_dir}-config-dir ${dir} "
     done
 
-    chpst -u vcap:vcap consul agent $CONFIG_DIR \
+    chpst -u vcap:vcap consul agent $config_dir \
          >>$LOG_DIR/$JOB_NAME.stdout.log \
          2>>$LOG_DIR/$JOB_NAME.stderr.log &
-
-    # TODO: -pid-file in future consul version
 
     # store pid in $PIDFILE
     echo $! > $PIDFILE
