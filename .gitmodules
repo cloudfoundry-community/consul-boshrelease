@@ -10,3 +10,6 @@
 [submodule "src/confd/src/github.com/armon/consul-kv"]
 	path = src/confd/src/github.com/armon/consul-kv
 	url = https://github.com/armon/consul-kv
+[submodule "src/confd/src/github.com/coreos/go-etcd"]
+	path = src/confd/src/github.com/coreos/go-etcd
+	url = https://github.com/coreos/go-etcd

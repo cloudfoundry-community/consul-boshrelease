@@ -23,9 +23,7 @@ mkdir -p $BOSH_INSTALL_TARGET/bin
 
   cd github.com/kelseyhightower/confd
   go build
-  find . -maxdepth 3
+
   mv $NAME ${BOSH_INSTALL_TARGET}/bin
   cp -a . ${BOSH_INSTALL_TARGET}/
 # fi
-
-exit 1
