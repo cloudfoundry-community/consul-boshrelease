@@ -1,3 +1,12 @@
 [submodule "src/consul/src/github.com/hashicorp/consul"]
 	path = src/consul/src/github.com/hashicorp/consul
 	url = https://github.com/hashicorp/consul.git
+[submodule "src/confd/src/github.com/kelseyhightower/confd"]
+	path = src/confd/src/github.com/kelseyhightower/confd
+	url = https://github.com/kelseyhightower/confd
+[submodule "src/confd/src/github.com/BurntSushi/toml"]
+	path = src/confd/src/github.com/BurntSushi/toml
+	url = https://github.com/BurntSushi/toml
+[submodule "src/confd/src/github.com/armon/consul-kv"]
+	path = src/confd/src/github.com/armon/consul-kv
+	url = https://github.com/armon/consul-kv

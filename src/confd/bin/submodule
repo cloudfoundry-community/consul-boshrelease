@@ -1,0 +1,11 @@
+#!/bin/bash
+
+gopkg=$1
+prefix=${2:-https}
+
+if [[ "${gopkg}X" == "X" ]]; then
+  echo "USAGE: submodule github.com/foo/bar [https]"
+  exit 1
+fi
+
+git submodule add -f $prefix://$gopkg src/$gopkg
