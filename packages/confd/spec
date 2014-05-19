@@ -1,5 +1,6 @@
 ---
 name: confd
-dependencies: []
+dependencies:
+- golang
 files:
-- confd/confd-0.4.0-beta2-linux-amd64
+- confd/**/*

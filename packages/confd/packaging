@@ -6,5 +6,26 @@ set -u # report the usage of uninitialized variables
 # $BOSH_INSTALL_TARGET - where you copy/install files to be included in package
 
 mkdir -p $BOSH_INSTALL_TARGET/bin
-cp -a confd/confd-0.4.0-beta2-linux-amd64 $BOSH_INSTALL_TARGET/bin/confd
-chmod +x $BOSH_INSTALL_TARGET/bin/confd
+# if [[ -f confd/confd-0.4.0-beta2-linux-amd64 ]]; then
+#   # use pre-compiled blob
+#   cp -a confd/confd-0.4.0-beta2-linux-amd64 $BOSH_INSTALL_TARGET/bin/confd
+#   chmod +x $BOSH_INSTALL_TARGET/bin/confd
+# else
+  # build from source
+  cd confd/src
+
+  NAME=confd
+  export GOROOT=$(readlink -nf /var/vcap/packages/golang)
+  export PATH=$GOROOT/bin:$PATH
+  export GOPATH=$BOSH_COMPILE_TARGET/$NAME
+
+  mkdir -p ${BOSH_INSTALL_TARGET}/bin
+
+  cd github.com/kelseyhightower/confd
+  go build
+  find . -maxdepth 3
+  mv $NAME ${BOSH_INSTALL_TARGET}/bin
+  cp -a . ${BOSH_INSTALL_TARGET}/
+# fi
+
+exit 1

@@ -11,3 +11,7 @@ envconsul/envconsul_linux_amd64-0.1:
   object_id: d312463e-2ce8-4fbc-94bb-1962ee258a55
   sha: 80c4c6d85da7efae4cdaec435ba6f4c7a259ba6a
   size: 8321512
+golang/go1.2.1.linux-amd64.tar.gz:
+  object_id: 0e340d19-6d0e-4ee4-9fb4-7c0ad6ef6957
+  sha: 7605f577ff6ac2d608a3a4e829b255ae2ebc8dcf
+  size: 56123695
