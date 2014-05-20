@@ -2,11 +2,11 @@ meta:
   environment: ~
 
 update:
-  canaries: 1
-  max_in_flight: 50
+  canaries: 0
+  max_in_flight: 1
   canary_watch_time: 1000-30000
   update_watch_time: 1000-30000
-  serial: false
+  serial: true
 
 jobs:
   - name: consul_bootstrap_z1
@@ -22,8 +22,6 @@ jobs:
     instances: 0
     resource_pool: small_z1
     networks: (( merge ))
-    update:
-      canaries: 10
     properties:
       consul:
         server: true
