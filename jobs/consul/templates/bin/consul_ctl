@@ -33,11 +33,10 @@ case $1 in
     done
 
     chpst -u vcap:vcap consul agent $config_dir \
+      -pid-file $PIDFILE \
          >>$LOG_DIR/$JOB_NAME.stdout.log \
          2>>$LOG_DIR/$JOB_NAME.stderr.log &
 
-    # store pid in $PIDFILE
-    echo $! > $PIDFILE
     ;;
 
   stop)
