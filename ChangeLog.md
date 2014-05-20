@@ -16,6 +16,7 @@ Client Usage:
 
 Packages:
 
+- consul v0.2.1
 - added [envconsul](https://github.com/hashicorp/envconsul) v0.1
 
 Development:
@@ -37,4 +38,4 @@ Packages:
 
 - consul v0.2.0
 - consul-ui
-- confd v0.4.0
+- confd v0.4.0-beta2

@@ -1,8 +1,4 @@
 ---
-consul/consul-0.2.0_linux_amd64.zip:
-  object_id: a0de30ff-8a4b-4e60-a4bb-ada3ddf21632
-  sha: 55710949519576b0a9db865eb86ce21477572fc0
-  size: 4074088
 confd/confd-0.4.0-beta2-linux-amd64:
   object_id: 9100c69c-316b-487d-8d82-920e1b7a0cf5
   sha: 2a6f42401c3ca2099cb9dfb41fe0fbfb739e16a8
@@ -15,3 +11,7 @@ golang/go1.2.1.linux-amd64.tar.gz:
   object_id: 0e340d19-6d0e-4ee4-9fb4-7c0ad6ef6957
   sha: 7605f577ff6ac2d608a3a4e829b255ae2ebc8dcf
   size: 56123695
+consul/consul-0.2.1_linux_amd64.zip:
+  object_id: a98807a9-2a06-4eb1-877a-2f3a70173b92
+  sha: 3ca8d33d9e305843fd2807ef8a95a807b98c1ad0
+  size: 4081792
