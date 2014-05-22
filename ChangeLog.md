@@ -1,6 +1,13 @@
 ChangeLog
 =========
 
+v4
+--
+
+Packages:
+
+- consul-ui - now looks pretty; pre-compiles static assets
+
 v3
 --
 
