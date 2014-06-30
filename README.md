@@ -11,13 +11,18 @@ The [redis-boshrelease](https://github.com/cloudfoundry-community/redis-boshrele
 Installation
 ------------
 
-To use this bosh release, first upload it to your bosh:
+To use this BOSH release, first upload it to your bosh:
 
 ```
-bosh target BOSH_HOST
+bosh upload release https://consul-boshrelease.s3.amazonaws.com/boshrelease-consul-4.tgz
+```
+
+To deploy it you will need the source repository that contains templates:
+
+```
 git clone https://github.com/cloudfoundry-community/consul-boshrelease.git
 cd consul-boshrelease
-bosh upload release releases/consul-4.yml
+git checkout v4
 ```
 
 Usage
