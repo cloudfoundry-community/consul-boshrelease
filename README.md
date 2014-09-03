@@ -31,18 +31,14 @@ Usage
 For [bosh-lite](https://github.com/cloudfoundry/bosh-lite), you can quickly create a deployment manifest & deploy a 3-node cluster:
 
 ```
-templates/make_manifest warden bootstrap
-bosh -n deploy
-templates/make_manifest warden cluster
+templates/make_manifest warden
 bosh -n deploy
 ```
 
 For AWS EC2, create a 3-node cluster:
 
 ```
-templates/make_manifest aws-ec2 bootstrap
-bosh -n deploy
-templates/make_manifest aws-ec2 cluster
+templates/make_manifest aws-ec2
 bosh -n deploy
 ```
 

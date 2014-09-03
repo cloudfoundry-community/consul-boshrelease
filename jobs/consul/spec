@@ -13,9 +13,14 @@ templates:
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
 properties:
-  consul.server:
-    description: Run in server mode; else in client mode
-    default: false
+  consul.cluster.join_host:
+    description: Hostname/IP for initial cluster node for other consul servers to join.
+  consul.cluster.join_hosts:
+    description: Hostnames/IPs representing all initial consul servers. Use this or consul.cluster.join_host / consul.cluster.size
 
-  consul.servers:
-    description: Hostnames/IPs for consul servers; if missing, run in bootstrap mode
+  consul.cluster.size:
+    description: Expected size of consul server cluster being built. Leader election delayed until all server nodes available.
+
+  network:
+    description: Deployment's internal name for the network interface to discover own IP
+    default: consul1

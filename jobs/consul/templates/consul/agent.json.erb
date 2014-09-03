@@ -1,15 +1,20 @@
+<% my_ip = spec.networks.send(properties.network).ip %>
+<% my_host = spec.networks.send(properties.network).dns_record_name %>
 {
   "data_dir": "/var/vcap/store/consul",
   "ui_dir": "/var/vcap/packages/consul-ui",
   "node_name": "<%= spec.deployment %>-<%= name %>-<%= index %>",
-  <% if_p("consul.servers") do |servers| %>
-  "server": <%= p("consul.server") %>,
-  "start_join": <%= servers.to_json %>,
-  <% end.else do %>
-  "bootstrap": true,
+  <% if_p("consul.cluster.size") do |cluster_size| %>
+  "bootstrap_expect": <%= cluster_size %>,
   "server": true,
   <% end %>
-
+  <% if_p("consul.cluster.join_host") do |join_host| %>
+    <% if join_host != my_ip && join_host != my_host %>
+  "start_join": ["<%= join_host %>"],
+    <% end %>
+  <% end.else_if_p("consul.cluster.join_hosts") do |join_hosts| %>
+  "start_join": <%= join_hosts.reject {|host| host == my_host || host == my_ip }.to_json %>,
+  <% end %>
   "bind_addr": "0.0.0.0",
   "client_addr": "0.0.0.0",
   "ports": {

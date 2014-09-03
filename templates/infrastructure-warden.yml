@@ -1,29 +1,23 @@
 meta:
   environment: consul-warden
+  cluster_size: 3
 
   stemcell:
     name: bosh-warden-boshlite-ubuntu
     version: latest
 
-update:
-  canaries: 1
-  max_in_flight: 1
-  canary_watch_time: 1000-60000
-  update_watch_time: 1000-60000
-
 jobs:
-  - name: consul_bootstrap_z1
-    instances: 0
-    networks:
-      - name: consul1
-  - name: consul_server_z1
-    instances: 3
+  - name: consul_z1
+    instances: (( meta.cluster_size ))
     networks:
       - name: consul1
         static_ips: (( static_ips(1, 2, 3) ))
     properties:
       consul:
-        servers: (( jobs.consul_server_z1.networks.consul1.static_ips ))
+        cluster:
+          size: (( meta.cluster_size ))
+          join_hosts: (( jobs.consul_z1.networks.consul1.static_ips ))
+      network: consul1
 
 compilation:
   cloud_properties:

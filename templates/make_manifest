@@ -5,22 +5,14 @@ set -e
 template_prefix="consul"
 
 infrastructure=$1
-cluster_mode=$2
 STEMCELL_OS=${STEMCELL_OS:-ubuntu}
 
 if [ "$infrastructure" != "aws-ec2" ] && \
     [ "$infrastructure" != "warden" ] ; then
-  echo "usage: ./make_manifest <aws-ec2|warden> <bootstrap|cluster>"
+  echo "usage: ./make_manifest <aws-ec2|warden>"
   exit 1
 fi
 
-if [ "$cluster_mode" != "bootstrap" ] && \
-    [ "$cluster_mode" != "cluster" ]; then
-  echo "usage: ./make_manifest $infrastructure <bootstrap|cluster>"
-  exit 1
-fi
-
-shift
 shift
 
 BOSH_STATUS=$(bosh status)
@@ -70,7 +62,7 @@ perl -pi -e "s/STEMCELL/$STEMCELL/g" $tmpdir/stub-with-uuid.yml
 spiff merge \
   $templates/deployment.yml \
   $templates/jobs.yml \
-  $templates/$cluster_mode-${infrastructure}.yml \
+  $templates/infrastructure-${infrastructure}.yml \
   $tmpdir/stub-with-uuid.yml \
   $* > $tmpdir/$NAME-manifest.yml
 
