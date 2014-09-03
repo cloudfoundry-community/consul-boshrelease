@@ -10,5 +10,5 @@ export HOME=/var/vcap
 
 
 
-tar xfv golang/go1.2.1.linux-amd64.tar.gz
+tar xfv golang/go1.3.1.linux-amd64.tar.gz
 cp -a go/* $BOSH_INSTALL_TARGET

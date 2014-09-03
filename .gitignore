@@ -16,3 +16,5 @@ blobs/*
 #*
 tmp
 my*.yml
+releases/**/*.tgz
+blobs

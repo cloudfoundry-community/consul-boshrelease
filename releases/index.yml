@@ -8,3 +8,4 @@ builds:
     version: 3
   0e57651ae6071a1f474e5def90133433973db0ad:
     version: 4
+format-version: '2'
