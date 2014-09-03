@@ -8,11 +8,7 @@
   "bootstrap_expect": <%= cluster_size %>,
   "server": true,
   <% end %>
-  <% if_p("consul.cluster.join_host") do |join_host| %>
-    <% if join_host != my_ip && join_host != my_host %>
-  "start_join": ["<%= join_host %>"],
-    <% end %>
-  <% end.else_if_p("consul.cluster.join_hosts") do |join_hosts| %>
+  <% if_p("consul.cluster.join_hosts") do |join_hosts| %>
   "start_join": <%= join_hosts.reject {|host| host == my_host || host == my_ip }.to_json %>,
   <% end %>
   "bind_addr": "0.0.0.0",
