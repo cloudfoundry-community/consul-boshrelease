@@ -11,6 +11,11 @@
   <% if_p("consul.cluster.join_hosts") do |join_hosts| %>
   "start_join": <%= join_hosts.reject {|host| host == my_host || host == my_ip }.to_json %>,
   <% end %>
+  <% if_p("consul.cluster.join_host") do |host| %>
+  <% unless host == my_host || host == my_ip %>
+  "start_join": <%= [host].to_json %>,
+  <% end %>
+  <% end %>
   "bind_addr": "0.0.0.0",
   "client_addr": "0.0.0.0",
   "ports": {
