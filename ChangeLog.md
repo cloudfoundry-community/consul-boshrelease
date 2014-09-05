@@ -1,6 +1,17 @@
 ChangeLog
 =========
 
+v6
+--
+
+- consul v0.4.0
+
+v5
+--
+
+- consul v0.3.1
+- single deploy to clustered consul (no more bootstrap step)
+
 v4
 --
 
