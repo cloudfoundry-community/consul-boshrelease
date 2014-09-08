@@ -17,10 +17,11 @@ properties:
     description: Hostname/IP for initial cluster node for other consul servers to join.
   consul.cluster.join_hosts:
     description: Hostnames/IPs representing all initial consul servers. Use this or consul.cluster.join_host / consul.cluster.size
-
   consul.cluster.size:
     description: Expected size of consul server cluster being built. Leader election delayed until all server nodes available.
-
+  consul.domain:
+    description: All DNS queries for this domain will be handled by consul.
+    default: consul
   network:
     description: Deployment's internal name for the network interface to discover own IP
     default: consul1
