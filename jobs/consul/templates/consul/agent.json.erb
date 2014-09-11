@@ -6,6 +6,7 @@
   join_hosts = p('consul.cluster.join_hosts', nil)
   join_host = p('consul.cluster.join_host', nil)
   cluster_size = p('consul.cluster.size', nil)
+  is_inital_leader = join_host && (join_host == my_host || join_host == my_ip)
 
   config = {
     data_dir: '/var/vcap/store/consul',
@@ -17,6 +18,7 @@
     leave_on_terminate: false,
     log_level: 'INFO',
     domain: p('consul.domain', 'consul'),
+    server: true,
     ports: {
       dns: 53
     }
@@ -31,9 +33,8 @@
   if join_hosts
     config[:start_join] = join_hosts.reject { |host| host == my_host || host == my_ip }
   elsif join_host and cluster_size
-    config[:start_join] = [join_host] unless join_host == my_host || join_host == my_ip 
+    config[:start_join] = [join_host] unless is_inital_leader
     config[:bootstrap_expect] = cluster_size
-    config[:server] = true
   end
 %>
 
