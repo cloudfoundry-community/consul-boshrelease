@@ -24,6 +24,10 @@
     }
   }
 
+  if p('consul.encrypt')
+    config[:encrypt] = p('consul.encrypt')
+  end
+
   if (networks = spec.networks.methods(false)) && dns = spec.networks.send(networks.first).dns
     config[:recursor] = dns.first
   else
