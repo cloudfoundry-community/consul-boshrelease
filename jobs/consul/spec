@@ -19,6 +19,9 @@ properties:
     description: Hostnames/IPs representing all initial consul servers. Use this or consul.cluster.join_host / consul.cluster.size
   consul.cluster.size:
     description: Expected size of consul server cluster being built. Leader election delayed until all server nodes available.
+  consul.server:
+    description: Should the agent run in server or client mode
+    default: true
   consul.domain:
     description: All DNS queries for this domain will be handled by consul.
     default: consul

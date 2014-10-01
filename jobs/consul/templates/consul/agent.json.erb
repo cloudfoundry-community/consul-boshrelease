@@ -18,7 +18,7 @@
     leave_on_terminate: false,
     log_level: 'INFO',
     domain: p('consul.domain', 'consul'),
-    server: true,
+    server: p('consul.server', true),
     ports: {
       dns: 53
     }
