@@ -27,7 +27,6 @@ properties:
     default: consul
   consul.encrypt:
     description: A key to encrypt the traffic between the consul agents (use consul keygen)
-    default: nil
   network:
     description: Deployment's internal name for the network interface to discover own IP
     default: consul1
