@@ -13,7 +13,7 @@
     ui_dir: '/var/vcap/packages/consul-ui',
     node_name: "#{spec.deployment}-#{name}-#{index}",
     bind_addr: '0.0.0.0',
-    client_addr: '0.0.0.0',
+    client_addr: '127.0.0.1',
     domain: 'consul',
     leave_on_terminate: false,
     log_level: 'INFO',
