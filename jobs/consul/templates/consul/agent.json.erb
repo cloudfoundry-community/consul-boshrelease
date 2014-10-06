@@ -15,6 +15,7 @@
     node_name: "#{spec.deployment}-#{name}-#{index}",
     bind_addr: '0.0.0.0',
     client_addr: client_addr,
+    advertise_addr: my_ip,
     domain: 'consul',
     leave_on_terminate: false,
     log_level: 'INFO',
