@@ -7,13 +7,14 @@
   join_host = p('consul.cluster.join_host', nil)
   cluster_size = p('consul.cluster.size', nil)
   is_inital_leader = join_host && (join_host == my_host || join_host == my_ip)
+  client_addr = p('consul.client_addr', '127.0.0.1')
 
   config = {
     data_dir: '/var/vcap/store/consul',
     ui_dir: '/var/vcap/packages/consul-ui',
     node_name: "#{spec.deployment}-#{name}-#{index}",
     bind_addr: '0.0.0.0',
-    client_addr: '127.0.0.1',
+    client_addr: client_addr,
     domain: 'consul',
     leave_on_terminate: false,
     log_level: 'INFO',
