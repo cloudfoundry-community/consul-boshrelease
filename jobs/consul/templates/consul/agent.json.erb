@@ -21,6 +21,7 @@
     log_level: 'INFO',
     domain: p('consul.domain', 'consul'),
     server: p('consul.server', true),
+    rejoin_after_leave: true,
     ports: {
       dns: 53
     }
