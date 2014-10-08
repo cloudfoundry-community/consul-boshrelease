@@ -9,6 +9,9 @@ templates:
   bin/monit_debugger: bin/monit_debugger
   bin/consul_ctl: bin/consul_ctl
   consul/agent.json.erb: consul/agent.json
+  consul/ca.cert.erb: consul/ca.cert
+  consul/consul.cert.erb: consul/consul.cert
+  consul/consul.key.erb: consul/consul.key
   data/properties.sh.erb: data/properties.sh
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
@@ -19,6 +22,12 @@ properties:
     description: Hostnames/IPs representing all initial consul servers. Use this or consul.cluster.join_host / consul.cluster.size
   consul.cluster.size:
     description: Expected size of consul server cluster being built. Leader election delayed until all server nodes available.
+  consul.ssl_ca:
+    description: "The content of the ca file"
+  consul.ssl_cert:
+    description: "The content of the cert file"
+  consul.ssl_key:
+    description: "The content of the key file"
   consul.server:
     description: Should the agent run in server or client mode
     default: true

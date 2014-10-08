@@ -9,6 +9,10 @@
   is_inital_leader = join_host && (join_host == my_host || join_host == my_ip)
   client_addr = p('consul.client_addr', '127.0.0.1')
 
+  ssl_ca = p("consul.ssl_ca", nil)
+  ssl_cert = p("consul.ssl_cert", nil)
+  ssl_key = p("consul.ssl_key", nil)
+
   config = {
     data_dir: '/var/vcap/store/consul',
     ui_dir: '/var/vcap/packages/consul-ui',
@@ -26,6 +30,14 @@
       dns: 53
     }
   }
+
+  if ssl_ca and ssl_cert and ssl_key
+    config[:verify_incoming] = true
+    config[:verify_outgoing] = true
+    config[:ca_file] = '/var/vcap/jobs/consul/consul/ca.cert'
+    config[:cert_file] = '/var/vcap/jobs/consul/consul/consul.cert'
+    config[:key_file] = '/var/vcap/jobs/consul/consul/consul.key'
+  end
 
   if p('consul.encrypt')
     config[:encrypt] = p('consul.encrypt')
