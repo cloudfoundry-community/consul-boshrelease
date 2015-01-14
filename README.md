@@ -11,20 +11,16 @@ The [redis-boshrelease](https://github.com/cloudfoundry-community/redis-boshrele
 Installation
 ------------
 
-To use this BOSH release, first upload it to your bosh:
+This information was changed because of the switch to a new consul version.
+Right now the consul tarball is downloaded via the update script.
 
 ```
-bosh upload release https://consul-boshrelease.s3.amazonaws.com/boshrelease-consul-6.tgz
+$> git clone https://github.com/cloudfoundry-community/consul-boshrelease.git
+$> cd consul-boshrelease
+$> ./update
+$> bosh create release --force
+$> bosh upload release
 ```
-
-To deploy it you will need the source repository that contains templates:
-
-```
-git clone https://github.com/cloudfoundry-community/consul-boshrelease.git
-cd consul-boshrelease
-git checkout v6
-```
-
 Usage
 -----
 

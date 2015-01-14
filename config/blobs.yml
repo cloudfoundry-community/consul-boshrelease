@@ -11,7 +11,3 @@ golang/go1.3.1.linux-amd64.tar.gz:
   object_id: 08faa90a-e9df-41da-998c-525d2eb64e49
   sha: 3af011cc19b21c7180f2604fd85fbc4ddde97143
   size: 51930765
-consul/consul-0.4.0_linux_amd64.zip:
-  object_id: 67d0df97-72c9-41a5-adbc-885fe0736d92
-  sha: b329dca874f5b98be934e48b7323e85b4fa67642
-  size: 4102505

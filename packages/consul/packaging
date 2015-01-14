@@ -6,11 +6,12 @@ set -u # report the usage of uninitialized variables
 # $BOSH_COMPILE_TARGET - where this package & spec'd source files are available
 # $BOSH_INSTALL_TARGET - where you copy/install files to be included in package
 export HOME=/var/vcap
+export CONSUL_VERSION=0.4.1
 
 
 
 cd consul
-unzip consul-0.4.0_linux_amd64.zip
+unzip consul-${CONSUL_VERSION}_linux_amd64.zip
 chmod +x consul
 
 mkdir -p $BOSH_INSTALL_TARGET/bin
