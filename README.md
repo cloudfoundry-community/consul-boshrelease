@@ -28,6 +28,8 @@ git checkout v6
 Usage
 -----
 
+### First-time cluster deployment
+
 For [bosh-lite](https://github.com/cloudfoundry/bosh-lite), you can quickly create a deployment manifest & deploy a 3-node cluster:
 
 ```
@@ -43,6 +45,30 @@ For AWS EC2, create a 3-node cluster:
 templates/make_manifest aws-ec2
 bosh -n deploy
 ```
+
+### Upgrading cluster
+
+The first time deployment will boot all VMs simultaneously. Afterwards we want to ensure at least one of the VMs is running at all times. So we need to change the manifest.
+
+Running the `make_manifest` command again for an existing deployment will change the manifest.
+
+```
+templates/make_manifest warden
+bosh -n deploy
+```
+
+Will include this change:
+
+```
+Jobs
+consul_z1
+  update
+    ± max_in_flight:
+      - 50
+      + 1
+```
+
+Now onwards, each consul server node will be updated only when the other nodes are not being updated.
 
 ### Override security groups
 

@@ -1,0 +1,6 @@
+---
+jobs:
+  - name: consul_z1
+    update:
+      canary: 0
+      max_in_flight: 50
