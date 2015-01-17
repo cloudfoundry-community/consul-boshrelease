@@ -6,6 +6,8 @@ meta:
     - consul
   stemcell:
     name: STEMCELL
+  consul:
+    default_recursor: ~
 
 director_uuid: PLACEHOLDER-DIRECTOR-UUID
 

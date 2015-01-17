@@ -5,6 +5,8 @@ meta:
   stemcell:
     name: bosh-warden-boshlite-ubuntu
     version: latest
+  consul:
+    default_recursor: ~
 
 jobs:
   - name: consul_z1
@@ -17,6 +19,7 @@ jobs:
         cluster:
           size: (( meta.cluster_size ))
           join_hosts: (( jobs.consul_z1.networks.consul1.static_ips ))
+        default_recursor: (( meta.consul.default_recursor ))
       network: consul1
 
 compilation:

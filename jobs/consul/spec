@@ -21,6 +21,9 @@ properties:
 
   consul.cluster.size:
     description: Expected size of consul server cluster being built. Leader election delayed until all server nodes available.
+  consul.default_recursor:
+    description: DNS recursor to use if BOSH not provising DNS
+    default: 8.8.8.8
 
   network:
     description: Deployment's internal name for the network interface to discover own IP

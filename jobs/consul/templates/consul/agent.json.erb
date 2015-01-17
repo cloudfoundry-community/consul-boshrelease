@@ -24,7 +24,9 @@
   <% if (networks = spec.networks.methods(false)) && dns = spec.networks.send(networks.first).dns %>
   "recursor": "<%= dns.first %>",
   <% else %>
-  "recursor": "8.8.8.8",
+    <% if_p("consul.recursor") do |recursor| %>
+  "recursor": "<%= recursor %>",
+    <% end %>
   <% end %>
   "domain": "consul",
   "leave_on_terminate": false,
