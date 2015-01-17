@@ -1,0 +1,5 @@
+---
+name: consul-template
+dependencies: []
+files:
+- consul-template/consul-template_0.5.1_linux_amd64.tar.gz

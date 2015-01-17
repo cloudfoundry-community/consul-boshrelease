@@ -3,6 +3,7 @@ name: consul
 packages:
 - consul
 - consul-ui
+- consul-template
 - confd
 - envconsul
 templates:
