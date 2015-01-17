@@ -3,8 +3,8 @@ BOSH release for consul
 
 Use this BOSH release to either:
 
-- deploy a cluster of consul servers; OR
-- upgrade an existing BOSH deployment to advertise or discover services
+-	deploy a cluster of consul servers; OR
+-	upgrade an existing BOSH deployment to advertise or discover services
 
 The [redis-boshrelease](https://github.com/cloudfoundry-community/redis-boshrelease) is an example BOSH release that can use this consul release to advertise itself to other consul consumers.
 
@@ -65,4 +65,15 @@ You now suffix this file path to the `make_manifest` command:
 ```
 templates/make_manifest openstack-nova my-networking.yml
 bosh -n deploy
+```
+
+Development
+-----------
+
+Requires Ruby 1.9+ for some build/upgrade `rake` tasks.
+
+```
+bundle install
+git submodule update --init
+bosh create release --force
 ```
