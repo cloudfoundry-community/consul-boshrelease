@@ -17,11 +17,13 @@ shift
 BOSH_STATUS=$(bosh status)
 DIRECTOR_UUID=$(echo "$BOSH_STATUS" | grep UUID | awk '{print $2}')
 DIRECTOR_CPI=$(echo "$BOSH_STATUS" | grep CPI | awk '{print $2}')
-DIRECTOR_NAME=$(echo "$BOSH_STATUS" | grep Name | awk '{print $2}')
+DIRECTOR_URL=$(echo "$BOSH_STATUS" | grep URL | awk '{print $2}')
+DIRECTOR_NAME=$(echo "$BOSH_STATUS" | grep Name | awk '{print $2} {print $3} {print $4}')
 NAME=$template_prefix-$infrastructure
 
+echo $DIRECTOR_NAME
 if [[ $infrastructure = "warden" ]]; then
-  if [[ $DIRECTOR_CPI != "warden" ]]; then
+  if [[ $DIRECTOR_URL != "https://192.168.50.4:25555" ]]; then
     echo "Not targeting bosh-lite with warden CPI. Please use 'bosh target' before running this script."
     exit 1
   fi
