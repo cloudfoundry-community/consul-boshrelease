@@ -35,6 +35,8 @@ templates/make_manifest warden
 bosh -n deploy
 ```
 
+View the Consul UI on http://10.244.4.2:8500/ui
+
 For AWS EC2, create a 3-node cluster:
 
 ```
@@ -70,7 +72,7 @@ bosh -n deploy
 Development
 -----------
 
-Requires Ruby 1.9+ for some build/upgrade `rake` tasks.
+Requires Ruby 1.9+ for consul-ui's sass buildtool.
 
 ```
 bundle install
