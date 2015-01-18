@@ -1,6 +1,0 @@
----
-name: confd
-dependencies:
-- golang
-files:
-- confd/**/*

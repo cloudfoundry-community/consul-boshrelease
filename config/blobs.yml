@@ -1,12 +1,4 @@
 ---
-confd/confd-0.6.0-alpha3-linux-amd64:
-  object_id: 76d392b2-f0a0-493f-b8fe-cae1e37c708b
-  sha: 415d3ab027d02cc68ab129fef2849cb2ea8dfc6a
-  size: 7714528
-envconsul/envconsul_linux_amd64-0.2:
-  object_id: e00b9528-f393-4266-bad3-e75e017908f2
-  sha: c46bf3a10cec3b5f92ef80fb723927e7406d5187
-  size: 6901488
 golang/go1.3.1.linux-amd64.tar.gz:
   object_id: 08faa90a-e9df-41da-998c-525d2eb64e49
   sha: 3af011cc19b21c7180f2604fd85fbc4ddde97143
@@ -19,3 +11,7 @@ consul-template/consul-template_0.5.1_linux_amd64.tar.gz:
   object_id: 9c0663f9-3365-42c7-bbea-5b799e7fc697
   sha: 18bcdcd844191d6192e103c2639e07fc66f796b0
   size: 2339842
+envconsul/envconsul_0.3.0_linux_amd64.tar.gz:
+  object_id: 8914dfb5-05b9-4e29-87e9-0b9943d043a0
+  sha: 14d879bfcbbbd7025193dee981dadf8858eaa669
+  size: 2023091
