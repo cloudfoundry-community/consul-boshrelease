@@ -1,6 +1,14 @@
 ChangeLog
 =========
 
+v8
+--
+
+-	consul agent loads config files from /var/vcap/sys/run/consul/$jobname as well as /var/vcap/jobs/$jobname/consul
+-	disable DNS recursor via `consul.default_recursor` (defaults to 8.8.8.8); continuing to use BOSH DNS if enabled
+-	envconsul v0.3
+-	[remove] confd; will package consul-template instead
+
 v7
 --
 

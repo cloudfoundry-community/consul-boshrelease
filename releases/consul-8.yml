@@ -1,0 +1,36 @@
+---
+packages:
+- name: consul
+  version: adce0cad1560b6dcbe41f06839e67c1174ab06e6
+  sha1: d005a3df77e81da386ab217928694fb3384ba7fb
+  fingerprint: adce0cad1560b6dcbe41f06839e67c1174ab06e6
+  dependencies: []
+- name: consul-template
+  version: 2aee5e6af475561f75557651fdc5222cdcbda9c0
+  sha1: f2e5db80aaca6113f575606756cd061507f9fbce
+  fingerprint: 2aee5e6af475561f75557651fdc5222cdcbda9c0
+  dependencies: []
+- name: consul-ui
+  version: 7c33f265ad01bbe063848ed5730d1c350ac669d4
+  sha1: 6eebde2e823485ffd4c242e5a0282a6e1aab83e9
+  fingerprint: 7c33f265ad01bbe063848ed5730d1c350ac669d4
+  dependencies: []
+- name: envconsul
+  version: 90d4cc3b4e290c3833cf5e32d0b5c99f4a63c0be
+  sha1: 2e455a5b0ca8eade34fb359be4266917e7aafaa2
+  fingerprint: 90d4cc3b4e290c3833cf5e32d0b5c99f4a63c0be
+  dependencies: []
+- name: golang
+  version: 43e2fcaa9e985b9fc0d70671f18f0edd02017f79
+  sha1: 3361b862a37c52c580175a3e2d9843fb6200e63b
+  fingerprint: 43e2fcaa9e985b9fc0d70671f18f0edd02017f79
+  dependencies: []
+jobs:
+- name: consul
+  version: 5d4df22b661a9abd5a4f241eda1d9f549cfc5c9c
+  fingerprint: 5d4df22b661a9abd5a4f241eda1d9f549cfc5c9c
+  sha1: 4bed6b6cbcf78277f6a67db9e7982ee0ae76e38b
+commit_hash: 888e2368
+uncommitted_changes: true
+name: consul
+version: '8'
