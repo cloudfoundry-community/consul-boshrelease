@@ -1,6 +1,11 @@
 ChangeLog
 =========
 
+v9
+--
+
+-	consul-template [v0.6.0](https://github.com/hashicorp/consul-template/releases/tag/v0.6.0)
+
 v8
 --
 
