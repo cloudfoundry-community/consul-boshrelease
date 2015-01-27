@@ -13,6 +13,10 @@ templates:
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
 properties:
+
+  consul.user:
+    description: User that consul is ran under
+    default: vcap
   consul.cluster.join_host:
     description: Hostname/IP for initial cluster node for other consul servers to join.
   consul.cluster.join_hosts:
