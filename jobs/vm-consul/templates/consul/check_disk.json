@@ -1,0 +1,8 @@
+{
+  "check": {
+    "id": "disk-util",
+    "name": "Disk utilization",
+    "script": "/var/vcap/jobs/vm-consul/bin/check_disk.pl -v",
+    "interval": "10s"
+  }
+}

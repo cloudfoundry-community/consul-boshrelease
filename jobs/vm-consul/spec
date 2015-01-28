@@ -1,0 +1,13 @@
+---
+name: vm-consul
+packages: []
+templates:
+  consul/check_mem.json: consul/check_mem.json
+  consul/check_disk.json: consul/check_disk.json
+  bin/check_mem.pl: bin/check_mem.pl
+  bin/check_disk.pl: bin/check_disk.pl
+properties:
+
+  consul.service.name:
+    description: Name for advertising/discovering this service over consul
+    default: "vm-node"

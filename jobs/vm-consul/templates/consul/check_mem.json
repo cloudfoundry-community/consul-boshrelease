@@ -1,0 +1,8 @@
+{
+  "check": {
+    "id": "mem-util",
+    "name": "Memory utilization",
+    "script": "/var/vcap/jobs/vm-consul/bin/check_mem.pl -u -w 85 -c 95",
+    "interval": "10s"
+  }
+}
