@@ -1,6 +1,11 @@
 ChangeLog
 =========
 
+v10
+--
+- support ssl and encrypt
+- support setting server or client
+
 v9
 --
 
