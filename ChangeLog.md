@@ -4,6 +4,9 @@ ChangeLog
 v9
 --
 
+- add vm consul checks
+- ability to change run as user
+- consul v0.5.0rc
 -	consul-template [v0.6.0](https://github.com/hashicorp/consul-template/releases/tag/v0.6.0)
 
 v8
