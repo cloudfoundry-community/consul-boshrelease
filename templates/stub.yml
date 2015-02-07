@@ -8,6 +8,8 @@ meta:
     name: STEMCELL
   consul:
     default_recursor: ~
+  subnet_id:
+    SUBNET_ID
 
 director_uuid: PLACEHOLDER-DIRECTOR-UUID
 

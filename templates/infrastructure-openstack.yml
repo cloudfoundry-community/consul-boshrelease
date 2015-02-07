@@ -1,0 +1,43 @@
+meta:
+  environment: (( merge ))
+  dns_root: (( merge ))
+  security_groups: (( merge ))
+  subnet_id: (( merge ))  
+  persistent_disk: 4096
+  cluster_size: 3
+
+  stemcell:
+    name: bosh-openstack-kvm-ubuntu-trusty-go_agent
+    version: 2830
+
+jobs:
+  - name: consul_z1
+    instances: (( meta.cluster_size ))
+    networks:
+      - name: consul1
+    persistent_disk: (( meta.persistent_disk ))
+    properties:
+      consul:
+        cluster:
+          size: (( meta.cluster_size ))
+          join_host: (( "0.consul-z1.consul1." meta.environment "." meta.dns_root ))
+      network: consul1
+
+compilation:
+  cloud_properties:
+    instance_type: m1.small
+
+resource_pools:
+  - name: small_z1
+    cloud_properties:
+      instance_type: m1.small
+
+networks:
+  - name: floating
+    type: vip
+    cloud_properties: {}
+  - name: consul1
+    type: dynamic
+    cloud_properties:
+      security_groups: (( meta.security_groups ))
+      net_id: (( meta.subnet_id ))

@@ -6,9 +6,9 @@ template_prefix="consul"
 
 infrastructure=$1
 
-if [ "$infrastructure" != "aws-ec2" ] && \
-    [ "$infrastructure" != "warden" ] ; then
-  echo "usage: ./make_manifest <aws-ec2|warden>"
+if [[ ! "$1" =~ (aws-ec2|warden|openstack) ]]; then
+  echo $infrastructure
+  echo "usage: ./make_manifest <aws-ec2|warden|openstack>"
   exit 1
 fi
 
@@ -35,6 +35,19 @@ if [[ $infrastructure = "aws-ec2" ]]; then
     exit 1
   fi
   STEMCELL_OS=${STEMCELL_OS:-ubuntu-trusty-go_agent}
+fi
+
+if [[ $infrastructure = "openstack" ]]; then
+  if [[ $DIRECTOR_CPI != "openstack" ]]; then
+    echo "Not targeting an Openstack BOSH. Please use 'bosh target' before running this script."
+    exit 1
+  fi
+  STEMCELL_OS=${STEMCELL_OS:-ubuntu-trusty-go_agent}
+  SUBNET_ID=${SUBNET_ID:-UNSET}
+  if [[ $SUBNET_ID = "UNSET" ]]; then
+    echo "You must set an environment variable (SUBNET_ID) for which subnet to use, if using Openstack"
+    exit 1
+  fi
 fi
 
 set +e
@@ -72,6 +85,7 @@ echo $DIRECTOR_NAME $DIRECTOR_CPI $DIRECTOR_UUID $STEMCELL
 perl -pi -e "s/PLACEHOLDER-DIRECTOR-UUID/$DIRECTOR_UUID/g" $tmpdir/stub-with-uuid.yml
 perl -pi -e "s/NAME/$NAME/g" $tmpdir/stub-with-uuid.yml
 perl -pi -e "s/STEMCELL/$STEMCELL/g" $tmpdir/stub-with-uuid.yml
+perl -pi -e "s/SUBNET_ID/$SUBNET_ID/g" $tmpdir/stub-with-uuid.yml
 
 spiff merge \
   $templates/deployment.yml \
