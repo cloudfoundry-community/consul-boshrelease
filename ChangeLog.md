@@ -1,6 +1,11 @@
 ChangeLog
 =========
 
+v11
+--
+- change network to networks to support deploying cf without adding
+  extra properties.
+
 v10
 --
 - support ssl and encrypt
