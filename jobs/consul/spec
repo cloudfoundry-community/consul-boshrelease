@@ -46,6 +46,6 @@ properties:
     description: A key to encrypt the traffic between the consul agents (use consul keygen)
   consul.client_addr:
     description: The IP to use for client communication
-  network:
+
+  networks.apps:
     description: Deployment's internal name for the network interface to discover own IP
-    default: consul1

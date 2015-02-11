@@ -1,8 +1,8 @@
 <%
   require 'json'
 
-  my_ip = spec.networks.send(properties.network).ip
-  my_host = spec.networks.send(properties.network).dns_record_name
+  my_ip = spec.networks.send(properties.networks.apps).ip
+  my_host = spec.networks.send(properties.networks.apps).dns_record_name
   join_hosts = p('consul.cluster.join_hosts', nil)
   join_host = p('consul.cluster.join_host', nil)
   cluster_size = p('consul.cluster.size', nil)
