@@ -50,9 +50,12 @@
   end
 
   if join_hosts
-    config[:start_join] = join_hosts.reject { |host| host == my_host || host == my_ip }
+    config[:start_join] = join_hosts
+    config[:retry_join] = join_hosts
+    config[:bootstrap_expect] = cluster_size
   elsif join_host and cluster_size
     config[:start_join] = [join_host] unless is_inital_leader
+    config[:retry_join] = [join_host] unless is_inital_leader
     config[:bootstrap_expect] = cluster_size
   end
 %>

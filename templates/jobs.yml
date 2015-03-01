@@ -18,7 +18,8 @@ jobs:
     networks: (( merge ))
     properties:
       consul: ~
-      network: consul1
+      networks:
+        apps: consul1
     persistent_disk: 0
     update:
       canaries: 0

@@ -2,4 +2,4 @@
 name: consul-ui
 dependencies: []
 files:
-- consul/src/github.com/hashicorp/consul/ui/**/*
+- consul-ui/*_web_ui.zip

@@ -1,4 +1,0 @@
-
-find .
-cd consul/src/github.com/hashicorp/consul/ui
-make dist
