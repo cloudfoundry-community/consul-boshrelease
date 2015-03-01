@@ -1,6 +1,12 @@
 ChangeLog
 =========
 
+v12
+--
+- added bootstrap expect to clusters of vms
+- upgraded to consul v0.5.0
+- upgraded consul ui to use zip version
+
 v11
 --
 - change network to networks to support deploying cf without adding
