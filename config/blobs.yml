@@ -19,3 +19,11 @@ consul/consul-0.5.0rc1_linux_amd64.zip:
   object_id: 9d49e4f7-3638-4bdf-823c-f119001d500c
   sha: 2ac1c8cfa10403c0f8d20aadcd80cf55402df80c
   size: 4410731
+consul/consul-0.5.0_linux_amd64.zip:
+  object_id: 66812851-4d49-49ea-b595-add4a9b4c52a
+  sha: 00e4c6e9ff2fb326d3b586fd86c3037f3b7e0974
+  size: 4669655
+consul-ui/consul-ui-0.5.0_web_ui.zip:
+  object_id: f327c43f-08fb-4c83-ac91-206e83963ae1
+  sha: 55ae1d1de29a3a50388956262cfcb2bb6f4c34f3
+  size: 252567
