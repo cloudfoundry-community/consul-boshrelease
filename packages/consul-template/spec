@@ -2,4 +2,4 @@
 name: consul-template
 dependencies: []
 files:
-- consul-template/consul-template_0.6.0_linux_amd64.tar.gz
+- consul-template/consul-template_0.9.0_linux_amd64.tar.gz
