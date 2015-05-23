@@ -2,4 +2,4 @@
 name: consul
 dependencies: []
 files:
-- consul/*linux_amd64.zip
+- consul/consul-0.5.0_linux_amd64.zip
