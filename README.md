@@ -112,6 +112,5 @@ Requires Ruby 1.9+ for consul-ui's sass buildtool.
 
 ```
 bundle install
-git submodule update --init
 bosh create release --force
 ```
