@@ -7,10 +7,6 @@ envconsul/envconsul_0.3.0_linux_amd64.tar.gz:
   object_id: 8914dfb5-05b9-4e29-87e9-0b9943d043a0
   sha: 14d879bfcbbbd7025193dee981dadf8858eaa669
   size: 2023091
-consul-template/consul-template_0.6.0_linux_amd64.tar.gz:
-  object_id: e7621f83-3b96-4c5e-a901-c221618fad23
-  sha: 42f4d37a8a5dad657ca02ec11df71c4000e0a8cb
-  size: 2356589
 consul/consul-0.5.0_linux_amd64.zip:
   object_id: 66812851-4d49-49ea-b595-add4a9b4c52a
   sha: 00e4c6e9ff2fb326d3b586fd86c3037f3b7e0974
@@ -19,3 +15,7 @@ consul-ui/consul-ui-0.5.0_web_ui.zip:
   object_id: f327c43f-08fb-4c83-ac91-206e83963ae1
   sha: 55ae1d1de29a3a50388956262cfcb2bb6f4c34f3
   size: 252567
+consul-template/consul-template_0.9.0_linux_amd64.tar.gz:
+  object_id: 4df9fdf9-595b-44c4-bc88-5f0d6cbcbebb
+  sha: a44e441f9347abe64956e5bb30c4d4b0464d1f73
+  size: 2460384
