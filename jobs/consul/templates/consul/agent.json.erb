@@ -1,13 +1,17 @@
 <%
   require 'json'
 
-  my_ip = spec.networks.send(properties.networks.apps).ip
-  my_host = spec.networks.send(properties.networks.apps).dns_record_name
-  join_hosts = p('consul.cluster.join_hosts', nil)
-  join_host = p('consul.cluster.join_host', nil)
+  join_hosts = p('consul.cluster.join_hosts', [])
   cluster_size = p('consul.cluster.size', nil)
-  is_inital_leader = join_host && (join_host == my_host || join_host == my_ip)
-  client_addr = p('consul.client_addr', '0.0.0.0')
+  is_inital_leader = (1 == join_hosts.length) && ('127.0.0.1' == join_hosts[1])
+
+  advertise_addr = nil
+
+  if p('consul.advertise_addr', nil)
+    advertise_addr = p('consul.advertise_addr')
+  elsif p('networks.apps', nil)
+    advertise_addr = spec.networks.send(properties.networks.apps).ip
+  end
 
   ssl_ca = p("consul.ssl_ca", nil)
   ssl_cert = p("consul.ssl_cert", nil)
@@ -18,8 +22,8 @@
     ui_dir: '/var/vcap/packages/consul-ui',
     node_name: "#{spec.deployment}-#{name}-#{index}",
     bind_addr: '0.0.0.0',
-    client_addr: client_addr,
-    advertise_addr: my_ip,
+    client_addr: p('consul.client_addr', '0.0.0.0'),
+    advertise_addr: advertise_addr,
     domain: 'consul',
     leave_on_terminate: false,
     log_level: 'INFO',
@@ -50,13 +54,9 @@
     config[:recursor] = p('consul.default_recursor')
   end
 
-  if join_hosts
-    config[:start_join] = join_hosts
-    config[:retry_join] = join_hosts
-    config[:bootstrap_expect] = cluster_size
-  elsif join_host and cluster_size
-    config[:start_join] = [join_host] unless is_inital_leader
-    config[:retry_join] = [join_host] unless is_inital_leader
+  if join_hosts and cluster_size
+    config[:start_join] = join_hosts unless is_inital_leader
+    config[:retry_join] = join_hosts unless is_inital_leader
     config[:bootstrap_expect] = cluster_size
   end
 %>
