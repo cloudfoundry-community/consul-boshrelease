@@ -47,7 +47,7 @@
   if (networks = spec.networks.methods(false)) && dns = spec.networks.send(networks.first).dns
     config[:recursor] = dns.first
   else
-    config[:recursor] = '8.8.8.8'
+    config[:recursor] = p('consul.default_recursor')
   end
 
   if join_hosts
