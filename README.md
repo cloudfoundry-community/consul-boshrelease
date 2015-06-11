@@ -15,28 +15,20 @@ This information was changed because of the switch to a new consul version.
 Right now the consul tarball is downloaded via the update script.
 
 ```
-<<<<<<< HEAD
 bosh upload release https://consul-boshrelease.s3.amazonaws.com/boshrelease-consul-7.tgz
 ```
 
 To deploy it you will need the source repository that contains templates:
 
 ```
-git clone https://github.com/cloudfoundry-community/consul-boshrelease.git
-cd consul-boshrelease
-git checkout v8
-```
-
-=======
 $> git clone https://github.com/cloudfoundry-community/consul-boshrelease.git
 $> cd consul-boshrelease
 $> ./update
 $> bosh create release --force
 $> bosh upload release
 ```
->>>>>>> anynines/master
-Usage
------
+
+## Usage
 
 ### First-time cluster deployment
 
