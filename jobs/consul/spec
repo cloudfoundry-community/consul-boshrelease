@@ -20,8 +20,6 @@ properties:
   consul.user:
     description: User that consul is ran under
     default: vcap
-  consul.cluster.join_host:
-    description: Hostname/IP for initial cluster node for other consul servers to join.
   consul.cluster.join_hosts:
     description: Hostnames/IPs representing all initial consul servers. Use this or consul.cluster.join_host / consul.cluster.size
   consul.cluster.size:
@@ -46,6 +44,8 @@ properties:
     description: A key to encrypt the traffic between the consul agents (use consul keygen)
   consul.client_addr:
     description: The IP to use for client communication
+  consul.advertise_addr:
+    description: Override IP to advertise to other nodes in the cluster (defaults to networks.apps, then 0.0.0.0)
 
   networks.apps:
     description: Deployment's internal name for the network interface to discover own IP
