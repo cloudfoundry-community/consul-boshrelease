@@ -47,5 +47,8 @@ properties:
   consul.client_addr:
     description: The IP to use for client communication
 
+  consul.agent_config:
+    description: override hash for the consul agent.json configuration
+
   networks.apps:
     description: Deployment's internal name for the network interface to discover own IP
