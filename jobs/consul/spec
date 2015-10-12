@@ -46,6 +46,9 @@ properties:
     description: A key to encrypt the traffic between the consul agents (use consul keygen)
   consul.client_addr:
     description: The IP to use for client communication
+  consul.leave_on_terminate:
+    description: If enabled, gracefully leave the cluster when the process shuts down.
+    default: false
 
   consul.agent_config:
     description: override hash for the consul agent.json configuration
