@@ -8,6 +8,7 @@
   cluster_size = p('consul.cluster.size', nil)
   is_inital_leader = join_host && (join_host == my_host || join_host == my_ip)
   client_addr = p('consul.client_addr', '0.0.0.0')
+  agent_config = p('consul.agent_config', nil)
 
   ssl_ca = p("consul.ssl_ca", nil)
   ssl_cert = p("consul.ssl_cert", nil)
@@ -20,7 +21,6 @@
     bind_addr: '0.0.0.0',
     client_addr: client_addr,
     advertise_addr: my_ip,
-    domain: 'consul',
     leave_on_terminate: false,
     log_level: 'INFO',
     domain: p('consul.domain', 'consul'),
@@ -58,6 +58,13 @@
     config[:start_join] = [join_host] unless is_inital_leader
     config[:retry_join] = [join_host] unless is_inital_leader
     config[:bootstrap_expect] = cluster_size
+  end
+
+  if agent_config
+    # symbolize hash keys, merge to config, remove nil values
+    agent_config = agent_config.inject({}) { |m,(k,v)| m[k.to_sym] = v; m }
+    config.merge!(agent_config)
+    config = config.delete_if { |k,v| v.nil? }
   end
 %>
 
