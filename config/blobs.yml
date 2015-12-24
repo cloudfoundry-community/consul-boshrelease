@@ -19,3 +19,7 @@ consul-template/consul-template_0.9.0_linux_amd64.tar.gz:
   object_id: 4df9fdf9-595b-44c4-bc88-5f0d6cbcbebb
   sha: a44e441f9347abe64956e5bb30c4d4b0464d1f73
   size: 2460384
+consul/consul_0.6.0_linux_amd64.zip:
+  object_id: 76072735-b5b9-4668-9527-c152583dc541
+  sha: 6c251f1a9249a8e9599cf54b009cca1b3fea45dc
+  size: 5376306
