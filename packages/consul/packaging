@@ -11,7 +11,7 @@ export CONSUL_VERSION=0.6.0
 
 
 cd consul
-unzip consul-${CONSUL_VERSION}_linux_amd64.zip
+unzip consul_${CONSUL_VERSION}_linux_amd64.zip
 chmod +x consul
 
 mkdir -p $BOSH_INSTALL_TARGET/bin
