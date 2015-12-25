@@ -1,11 +1,11 @@
 <%
   require 'json'
 
-  my_ip = spec.networks.send(properties.networks.apps).ip
-  my_host = spec.networks.send(properties.networks.apps).dns_record_name
-  join_hosts = p('consul.cluster.join_hosts', nil)
-  join_host = p('consul.cluster.join_host', nil)
-  cluster_size = p('consul.cluster.size', nil)
+  my_ip = spec.networks.send(spec.networks.methods(false).first).ip
+  my_host = spec.networks.send(spec.networks.methods(false).first).dns_record_name
+  join_hosts = p('consul.join_hosts', nil)
+  join_host = p('consul.join_host', nil)
+  cluster_size = p('consul.join_hosts').size
   is_inital_leader = join_host && (join_host == my_host || join_host == my_ip)
   client_addr = p('consul.client_addr', '0.0.0.0')
   agent_config = p('consul.agent_config', nil)

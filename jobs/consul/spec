@@ -20,12 +20,10 @@ properties:
   consul.user:
     description: User that consul is ran under
     default: vcap
-  consul.cluster.join_host:
+  consul.join_host:
     description: Hostname/IP for initial cluster node for other consul servers to join.
-  consul.cluster.join_hosts:
-    description: Hostnames/IPs representing all initial consul servers. Use this or consul.cluster.join_host / consul.cluster.size
-  consul.cluster.size:
-    description: Expected size of consul server cluster being built. Leader election delayed until all server nodes available.
+  consul.join_hosts:
+    description: Hostnames/IPs representing all initial consul servers. Use this or consul.join_host / consul.size
   consul.default_recursor:
     description: DNS recursor to use if BOSH not provising DNS
     default: 8.8.8.8

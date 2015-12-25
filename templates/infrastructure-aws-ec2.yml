@@ -3,7 +3,6 @@ meta:
   dns_root: (( merge ))
   security_groups: (( merge ))
   persistent_disk: 4096
-  cluster_size: 3
 
   stemcell:
     name: bosh-aws-xen-ubuntu
@@ -17,10 +16,7 @@ jobs:
     persistent_disk: (( meta.persistent_disk ))
     properties:
       consul:
-        cluster:
-          size: (( meta.cluster_size ))
-          join_host: (( "0.consul-z1.consul1." meta.environment "." meta.dns_root ))
-      network: consul1
+        join_host: (( "0.consul-z1.consul1." meta.environment "." meta.dns_root ))
 
 compilation:
   cloud_properties:

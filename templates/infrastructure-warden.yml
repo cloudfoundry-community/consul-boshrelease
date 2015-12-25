@@ -1,6 +1,5 @@
 meta:
   environment: consul-warden
-  cluster_size: 3
 
   stemcell:
     name: bosh-warden-boshlite-ubuntu
@@ -16,12 +15,8 @@ jobs:
         static_ips: (( static_ips(1, 2, 3) ))
     properties:
       consul:
-        cluster:
-          size: (( meta.cluster_size ))
-          join_hosts: (( jobs.consul_z1.networks.consul1.static_ips ))
+        join_hosts: (( jobs.consul_z1.networks.consul1.static_ips ))
         default_recursor: (( meta.consul.default_recursor ))
-      networks:
-        apps: consul1
 
 compilation:
   cloud_properties:
