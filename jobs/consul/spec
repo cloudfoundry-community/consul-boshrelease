@@ -51,5 +51,8 @@ properties:
   consul.agent_config:
     description: override hash for the consul agent.json configuration
 
+  consul.services:
+    description: a map of service configurations, keyed by service name
+
   networks.apps:
     description: Deployment's internal name for the network interface to discover own IP

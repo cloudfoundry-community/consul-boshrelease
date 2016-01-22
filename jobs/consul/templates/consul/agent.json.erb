@@ -5,8 +5,9 @@
   my_host = spec.networks.send(spec.networks.methods(false).first).dns_record_name
   join_hosts = p('consul.join_hosts', nil)
   join_host = p('consul.join_host', nil)
-  cluster_size = p('consul.join_hosts').size
+  cluster_size = join_hosts ? join_hosts.size : nil
   is_inital_leader = join_host && (join_host == my_host || join_host == my_ip)
+  is_server = p('consul.server', true)
   client_addr = p('consul.client_addr', '0.0.0.0')
   agent_config = p('consul.agent_config', nil)
 
@@ -24,7 +25,7 @@
     leave_on_terminate: p('consul.leave_on_terminate'),
     log_level: 'INFO',
     domain: p('consul.domain', 'consul'),
-    server: p('consul.server', true),
+    server: is_server,
     rejoin_after_leave: true,
     ports: {
       dns: 53
@@ -53,11 +54,11 @@
   if join_hosts
     config[:start_join] = join_hosts
     config[:retry_join] = join_hosts
-    config[:bootstrap_expect] = cluster_size
+    config[:bootstrap_expect] = cluster_size if is_server
   elsif join_host and cluster_size
     config[:start_join] = [join_host] unless is_inital_leader
     config[:retry_join] = [join_host] unless is_inital_leader
-    config[:bootstrap_expect] = cluster_size
+    config[:bootstrap_expect] = cluster_size if is_server
   end
 
   if agent_config
