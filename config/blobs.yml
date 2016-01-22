@@ -23,7 +23,3 @@ envconsul/envconsul_0.3.0_linux_amd64.tar.gz:
   object_id: 3f4ac3e3-6c93-4373-bcbb-11979e504784
   sha: 14d879bfcbbbd7025193dee981dadf8858eaa669
   size: 2023091
-golang/go1.3.1.linux-amd64.tar.gz:
-  object_id: 3d3898ae-20cf-4e51-bc7d-363eea08d95a
-  sha: 3af011cc19b21c7180f2604fd85fbc4ddde97143
-  size: 51930765
