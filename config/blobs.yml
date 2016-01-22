@@ -1,29 +1,29 @@
 ---
-golang/go1.3.1.linux-amd64.tar.gz:
-  object_id: 08faa90a-e9df-41da-998c-525d2eb64e49
-  sha: 3af011cc19b21c7180f2604fd85fbc4ddde97143
-  size: 51930765
-envconsul/envconsul_0.3.0_linux_amd64.tar.gz:
-  object_id: 8914dfb5-05b9-4e29-87e9-0b9943d043a0
-  sha: 14d879bfcbbbd7025193dee981dadf8858eaa669
-  size: 2023091
 consul/consul-0.5.0_linux_amd64.zip:
-  object_id: 66812851-4d49-49ea-b595-add4a9b4c52a
+  object_id: ee440484-0d2d-4336-92a5-df637c2f10cb
   sha: 00e4c6e9ff2fb326d3b586fd86c3037f3b7e0974
   size: 4669655
-consul-ui/consul-ui-0.5.0_web_ui.zip:
-  object_id: f327c43f-08fb-4c83-ac91-206e83963ae1
-  sha: 55ae1d1de29a3a50388956262cfcb2bb6f4c34f3
-  size: 252567
-consul-template/consul-template_0.9.0_linux_amd64.tar.gz:
-  object_id: 4df9fdf9-595b-44c4-bc88-5f0d6cbcbebb
-  sha: a44e441f9347abe64956e5bb30c4d4b0464d1f73
-  size: 2460384
 consul/consul_0.6.0_linux_amd64.zip:
-  object_id: 76072735-b5b9-4668-9527-c152583dc541
+  object_id: 3544e1bb-e038-411c-999c-1ce1b4958c4c
   sha: 6c251f1a9249a8e9599cf54b009cca1b3fea45dc
   size: 5376306
 consul-template/consul-template_0.12.0_linux_amd64.zip:
-  object_id: c30ca303-acfa-445e-871e-79bf9df77418
+  object_id: 9cd3af55-8fdd-4cce-993c-cefb318fea62
   sha: ba305ed40d48b7b4eb040c8e955bdff292362091
   size: 3163737
+consul-template/consul-template_0.9.0_linux_amd64.tar.gz:
+  object_id: e28fe18f-5e2c-44a3-8728-e39f51346454
+  sha: a44e441f9347abe64956e5bb30c4d4b0464d1f73
+  size: 2460384
+consul-ui/consul-ui-0.5.0_web_ui.zip:
+  object_id: 8c1219d0-6711-4a54-8662-22b3849b137b
+  sha: 55ae1d1de29a3a50388956262cfcb2bb6f4c34f3
+  size: 252567
+envconsul/envconsul_0.3.0_linux_amd64.tar.gz:
+  object_id: 3f4ac3e3-6c93-4373-bcbb-11979e504784
+  sha: 14d879bfcbbbd7025193dee981dadf8858eaa669
+  size: 2023091
+golang/go1.3.1.linux-amd64.tar.gz:
+  object_id: 3d3898ae-20cf-4e51-bc7d-363eea08d95a
+  sha: 3af011cc19b21c7180f2604fd85fbc4ddde97143
+  size: 51930765

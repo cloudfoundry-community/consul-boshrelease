@@ -3,42 +3,42 @@ packages:
 - name: consul
   version: 8ab2618cbee77d08b86591fa50b5889b6c8e4754
   fingerprint: 8ab2618cbee77d08b86591fa50b5889b6c8e4754
-  sha1: 67cf2d83d4a5cea5d8db8fef4c1dd4d09e6bf2f8
+  sha1: 8799b2a97269bf41f01cedff3ff574f85d8bd764
   dependencies: []
 - name: consul-template
   version: 561a4a5d99c375822876d5482ed24f790a0e216b
   fingerprint: 561a4a5d99c375822876d5482ed24f790a0e216b
-  sha1: 9d2d9e32800b4d07a726a00b00bf89e460cab96f
+  sha1: 35d52b6218fda1a16b670bf281aed95dd40a843c
   dependencies: []
 - name: consul-ui
   version: bdf4475bc50264b7b1d799bddbb730911831b66f
   fingerprint: bdf4475bc50264b7b1d799bddbb730911831b66f
-  sha1: c9a5060807e2f3363d49a7865b2f397791737628
+  sha1: efdce60c7c84630831089e49125f3349f1253b28
   dependencies: []
 - name: envconsul
   version: 90d4cc3b4e290c3833cf5e32d0b5c99f4a63c0be
   fingerprint: 90d4cc3b4e290c3833cf5e32d0b5c99f4a63c0be
-  sha1: 2e455a5b0ca8eade34fb359be4266917e7aafaa2
+  sha1: dc967e4a201591f81fa800e6f9ca0c08dd28038b
   dependencies: []
 - name: golang
   version: 43e2fcaa9e985b9fc0d70671f18f0edd02017f79
   fingerprint: 43e2fcaa9e985b9fc0d70671f18f0edd02017f79
-  sha1: 3361b862a37c52c580175a3e2d9843fb6200e63b
+  sha1: 38d7fe15f16a6b319f898822cf10221a3b47ba94
   dependencies: []
 jobs:
 - name: consul
   version: 5a57eb4960701edf63bb07134c11d7d7cf6f28c6
   fingerprint: 5a57eb4960701edf63bb07134c11d7d7cf6f28c6
-  sha1: 0b9263d10c5b7c5ad61b552055557eb484129c14
+  sha1: 73779ab54d17847dd007df3fb7e3b9972c098b6f
 - name: vm-consul
   version: 9a5b1083f15a10242069c045408803c00aaf7102
   fingerprint: 9a5b1083f15a10242069c045408803c00aaf7102
-  sha1: edb56630fd109b47f6b418657f7166d72d5c8756
+  sha1: 0deb0be40ac6ac77dc85321e2785d3ced5ceff66
 license:
   version: 2d6319fff180f187631966e35586d814acc90b39
   fingerprint: 2d6319fff180f187631966e35586d814acc90b39
-  sha1: 3ce4b76fd79b2b78d96c0cefc746b3c2201ffe4b
-commit_hash: ae2f7872
+  sha1: 0eee51dd90bd30403d0740caf6f3c8d4b446e229
+commit_hash: 05d86109
 uncommitted_changes: true
 name: consul
-version: '17'
+version: '18'
