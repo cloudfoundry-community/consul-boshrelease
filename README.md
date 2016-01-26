@@ -14,7 +14,7 @@ Installation
 To use this bosh release, first upload it to your bosh:
 
 ```
-bosh upload release releases/consul/consul-18.yml
+bosh upload release releases/consul/consul-19.yml
 ```
 
 ## Usage
