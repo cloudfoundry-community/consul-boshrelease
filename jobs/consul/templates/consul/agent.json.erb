@@ -45,10 +45,16 @@
     config[:encrypt] = p('consul.encrypt')
   end
 
-  if (networks = spec.networks.methods(false)) && dns = spec.networks.send(networks.first).dns
-    config[:recursor] = dns.first
-  else
-    config[:recursor] = p('consul.default_recursor')
+  if_p('consul.recursors') do |ns|
+    config[:recursors] = ns
+  end
+
+  if !config.has_key(:recursors)
+    if (networks = spec.networks.methods(false)) && dns = spec.networks.send(networks.first).dns
+      config[:recursor] = dns.first
+    else
+      config[:recursor] = p('consul.default_recursor')
+    end
   end
 
   if join_hosts
