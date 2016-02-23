@@ -9,7 +9,7 @@ meta:
 
 jobs:
   - name: consul_z1
-    instances: (( meta.cluster_size ))
+    instances: 1
     networks:
       - name: consul1
         static_ips: (( static_ips(1, 2, 3) ))
