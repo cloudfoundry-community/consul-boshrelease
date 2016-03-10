@@ -23,3 +23,7 @@ envconsul/envconsul_0.3.0_linux_amd64.tar.gz:
   object_id: 3f4ac3e3-6c93-4373-bcbb-11979e504784
   sha: 14d879bfcbbbd7025193dee981dadf8858eaa669
   size: 2023091
+consul/consul_0.6.3_linux_amd64.zip:
+  object_id: 425b7cd0-89fa-4457-822b-ec64e8c634ea
+  sha: a291f5ba462414addcbbbefb1dc6c710b0b0b8ca
+  size: 5714093
