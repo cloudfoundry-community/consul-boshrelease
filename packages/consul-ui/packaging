@@ -7,10 +7,11 @@ CPUS=$(grep -c ^processor /proc/cpuinfo)
 # $BOSH_COMPILE_TARGET - where this package & spec'd source files are available
 # $BOSH_INSTALL_TARGET - where you copy/install files to be included in package
 
+export CONSUL_VERSION=0.6.4
 
-export CONSUL_VERSION=0.5.0
+mkdir -p consul-ui/dist
+cd consul-ui/dist
+unzip ../consul_${CONSUL_VERSION}_web_ui.zip
 
-cd consul-ui
-unzip consul-ui-${CONSUL_VERSION}_web_ui.zip
-
+cd ..
 cp -a dist/* $BOSH_INSTALL_TARGET
