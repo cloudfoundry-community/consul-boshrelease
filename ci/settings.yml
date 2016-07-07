@@ -1,0 +1,27 @@
+---
+meta:
+  name:    consul
+  release: Consul
+  target:  sw
+  url:     https://ci.vsphere.starkandwayne.com
+
+  initial_version: 21.0.0
+
+  bosh-lite:
+    target: https://10.58.111.44:25555
+    deployment: consul-warden
+
+  aws:
+    access_key: (( vault "secret/aws/cfcommunity:access" ))
+    secret_key: (( vault "secret/aws/cfcommunity:secret" ))
+
+  github:
+    owner:  cloudfoundry-community
+    repo:   consul-boshrelease
+    branch: master
+    private_key:  (( vault "secret/pipelines/consul-boshrelease/github:private" ))
+    access_token: (( vault "secret/pipelines/consul-boshrelease/github:token" ))
+
+  slack:
+    webhook: (( vault "secret/pipelines/consul-boshrelease/slack:webhook" ))
+    channel: '#botspam'
