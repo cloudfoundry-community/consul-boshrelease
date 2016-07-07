@@ -6,4 +6,6 @@ builds:
     version: '19'
   e0d662a1-31aa-40c8-9d51-163ed41c7a2e:
     version: '20'
+  2af8d653-2c88-4fab-bcab-aaa8b3a7a060:
+    version: 21.0.0
 format-version: '2'
