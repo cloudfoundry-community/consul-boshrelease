@@ -36,7 +36,7 @@ case $1 in
   "service" => {
     "name" => service_name.tr('_', '-'),
     "check" => {
-      "script" => "/var/vcap/jobs/#{service_name}/bin/dns_health_check",
+      "script" => "/bin/true",
       "interval" => "3s"
     },
     "tags" => ["#{name.gsub('_', '-')}-#{spec.index}"]
