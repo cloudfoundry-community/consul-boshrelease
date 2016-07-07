@@ -2,21 +2,27 @@ meta:
   environment: consul-warden
 
   stemcell:
-    name: bosh-warden-boshlite-ubuntu
+    name: bosh-warden-boshlite-ubuntu-trusty-go_agent
     version: latest
+
   consul:
     default_recursor: ~
 
+update:
+  canaries: 1
+  max_in_flight: 50
+  canary_watch_time: 5000-120000
+  update_watch_time: 5000-120000
+
 jobs:
-  - name: consul_z1
-    instances: 1
+  - name: consul
     networks:
       - name: consul1
         static_ips: (( static_ips(1, 2, 3) ))
     properties:
       consul:
-        join_hosts: (( jobs.consul_z1.networks.consul1.static_ips ))
-        default_recursor: (( meta.consul.default_recursor ))
+        join_hosts: (( grab jobs.consul.networks.consul1.static_ips ))
+        default_recursor: (( grab meta.consul.default_recursor ))
 
 compilation:
   cloud_properties:
@@ -29,73 +35,10 @@ resource_pools:
 
 networks:
 - name: consul1
-  # Assumes up to 5 VMs, including 3 static and 2 dynamic.
-  # Plus 5 (double the size) unused IPs, due to BOSH bug/quirk.
+  type: manual
   subnets:
-  - cloud_properties:
-      name: random
-    range: 10.244.4.0/30
-    reserved:
-    - 10.244.4.1
+  - range: 10.244.68.0/24
+    name: consul1
+    gateway: 10.244.68.1
     static:
-    - 10.244.4.2
-  - cloud_properties:
-      name: random
-    range: 10.244.4.4/30
-    reserved:
-    - 10.244.4.5
-    static:
-    - 10.244.4.6
-  - cloud_properties:
-      name: random
-    range: 10.244.4.8/30
-    reserved:
-    - 10.244.4.9
-    static:
-    - 10.244.4.10
-
-  - cloud_properties:
-      name: random
-    range: 10.244.4.12/30
-    reserved:
-    - 10.244.4.13
-    static:
-    - 10.244.4.14
-  - cloud_properties:
-      name: random
-    range: 10.244.4.16/30
-    reserved:
-    - 10.244.4.17
-    static: []
-
-  # Bonus double-sized network required due to BOSH oddity
-  - cloud_properties:
-      name: random
-    range: 10.244.4.20/30
-    reserved:
-    - 10.244.4.21
-    static: []
-  - cloud_properties:
-      name: random
-    range: 10.244.4.24/30
-    reserved:
-    - 10.244.4.25
-    static: []
-  - cloud_properties:
-      name: random
-    range: 10.244.4.28/30
-    reserved:
-    - 10.244.4.29
-    static: []
-  - cloud_properties:
-      name: random
-    range: 10.244.4.32/30
-    reserved:
-    - 10.244.4.33
-    static: []
-  - cloud_properties:
-      name: random
-    range: 10.244.4.36/30
-    reserved:
-    - 10.244.4.37
-    static: []
+      - 10.244.68.2 - 10.244.68.60

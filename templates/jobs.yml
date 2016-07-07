@@ -9,22 +9,21 @@ update:
   serial: true
 
 jobs:
-  - name: consul_z1
+  - name: consul
+    instances: 3
     templates:
     - name: consul
       release: consul
-    instances: 0
     resource_pool: small_z1
-    networks: (( merge ))
     properties:
-      consul: ~
+      consul:
+        services:
+          example: {}
       networks:
         apps: consul1
     persistent_disk: 0
     update:
       canaries: 0
       max_in_flight: 50
-
-networks: (( merge ))
 
 properties: {}

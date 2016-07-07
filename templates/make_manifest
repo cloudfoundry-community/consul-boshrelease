@@ -3,61 +3,92 @@
 set -e
 
 template_prefix="consul"
+if [[ -z ${STEMCELL_OS} || ${STEMCELL_OS} == "" ]] ; then
+	envar=0
+else
+	envar=1
+fi
 
-infrastructure=$1
+STEMCELL_OS=${STEMCELL_OS:-${2}}
 
-if [ "$infrastructure" != "aws-ec2" ] && \
-    [ "$infrastructure" != "warden" ] ; then
-  echo "usage: ./make_manifest <aws-ec2|warden>"
+infrastructure=${1}
+
+fail() {
+	echo >&2 $*
+}
+
+info() {
+	echo >&1 $*
+}
+
+if [[ "${infrastructure}" != "aws" && "${infrastructure}" != "warden" ]] ; then
+  fail "usage: ./make_manifest <aws|warden> <ubuntu|centos>"
   exit 1
 fi
 
-shift
+
+if [[ ${infrastructure} == "warden" ]] ; then
+	if [[ ${STEMCELL_OS} == *yml || -z ${STEMCELL_OS} ]] ; then
+		info "STEMCELL_OS not specified and has been set to Ubuntu for warden."
+		STEMCELL_OS="ubuntu"
+		shift
+	elif [[ -z ${STEMCELL_OS} ]] ; then
+		info "STEMCELL_OS not specified and has been set to Ubuntu for warden."
+		STEMCELL_OS="ubuntu"
+	elif [[ ${STEMCELL_OS} == "centos" ]] ; then
+		info "CentOS is not an available STEMCELL_OS for warden and has been changed to Ubuntu. Please check your command line arguments."
+		STEMCELL_OS="ubuntu"
+		shift ; if [[ ${envar} == 1 ]] ; then shift ; fi
+	elif [[ ${STEMCELL_OS} != "ubuntu" ]] ; then
+		fail "Second argument is neither the STEMCELL_OS nor a YAML file for merging. Please check your command line arguments."
+		fail "Unrecognized argument: ${2}"
+		exit 1
+	fi
+fi
+
+if [[ ${infrastructure} == "aws" ]] ; then
+	if [[ ${STEMCELL_OS} == "centos" || ${STEMCELL_OS} == "ubuntu" ]] ; then
+		shift ; if [[ ${envar} == 0 ]] ; then shift ; fi
+	else
+		fail "Unrecognized STEMCELL_OS ${STEMCELL_OS} for AWS. Please check your command line arguments."
+		exit 1
+	fi
+fi
+
+case "${infrastructure}/${STEMCELL_OS}" in
+  (warden/ubuntu)   STEMCELL_URL="https://bosh.io/d/stemcells/bosh-warden-boshlite-ubuntu-trusty-go_agent" ;;
+  (aws/ubuntu)      STEMCELL_URL="https://bosh.io/d/stemcells/bosh-aws-xen-ubuntu-trusty-go_agent" ;;
+  (aws/centos)      STEMCELL_URL="https://bosh.io/d/stemcells/bosh-aws-xen-centos-7-go_agent" ;;
+  (*)
+    fail "Invalid infrastructure or OS specified."
+    exit 1
+    ;;
+esac
 
 BOSH_STATUS=$(bosh status)
 DIRECTOR_UUID=$(echo "$BOSH_STATUS" | grep UUID | awk '{print $2}')
-DIRECTOR_CPI=$(echo "$BOSH_STATUS" | grep CPI | awk '{print $2}')
-DIRECTOR_URL=$(echo "$BOSH_STATUS" | grep URL | awk '{print $2}')
-DIRECTOR_NAME=$(echo "$BOSH_STATUS" | grep Name | awk '{print $2} {print $3} {print $4}')
+DIRECTOR_CPI=$(echo "$BOSH_STATUS" | grep CPI | awk '{print $2}' | sed -e 's/_cpi//')
+DIRECTOR_NAME=$(echo "$BOSH_STATUS" | grep Name | awk '{print $2}')
 NAME=$template_prefix-$infrastructure
 
-if [[ $infrastructure = "warden" ]]; then
-  if [[ $DIRECTOR_URL != "https://192.168.50.4:25555" ]]; then
-    echo "Not targeting bosh-lite with warden CPI. Please use 'bosh target' before running this script."
-    exit 1
-  fi
-  STEMCELL_OS=${STEMCELL_OS:-ubuntu}
+if [[ $DIRECTOR_NAME = "warden" && ${infrastructure} != "warden" ]]; then
+  fail "Not targeting bosh-lite with warden CPI. Please make sure you have run 'bosh target' and are targeting a BOSH lite before running this script."
+  exit 1
 fi
 
-if [[ $infrastructure = "aws-ec2" ]]; then
-  if [[ $DIRECTOR_CPI != "aws" ]]; then
-    echo "Not targeting an AWS BOSH. Please use 'bosh target' before running this script."
-    exit 1
-  fi
-  STEMCELL_OS=${STEMCELL_OS:-ubuntu-trusty-go_agent}
-fi
-
-set +e
-DEPLOYMENT_EXISTS=$(bosh deployments 2>&1 | grep "| $NAME ")
-set -e
-
-if [[ "${DEPLOYMENT_EXISTS}X" != "X" ]]; then
-  echo "Existing deployment - update cluster one instance at a time"
-  update_template="existing"
-else
-  echo "New deployment - bootstrap entire cluster at same time"
-  update_template="firsttime"
+if [[ $infrastructure = "aws" && ${DIRECTOR_CPI} != "aws" ]]; then
+  fail "Not targeting an AWS BOSH. Please make sure you have run 'bosh target' and are targeting an AWS BOSH before running this script."
+  exit 1
 fi
 
 function latest_uploaded_stemcell {
-  bosh stemcells | grep bosh | grep $STEMCELL_OS | awk -F'|' '{ print $2, $3 }' | sort -nr -k2 | head -n1 | awk '{ print $1 }'
+  echo $(bosh stemcells | grep bosh | grep $STEMCELL_OS | awk -F'|' '{ print $2, $3 }' | sort -nr -k2 | head -n1 | awk '{ print $1 }')
 }
 
 STEMCELL=${STEMCELL:-$(latest_uploaded_stemcell)}
-if [[ "${STEMCELL}X" == "X" ]]; then
+if [[ -z ${STEMCELL} ]]; then
   echo
   echo "Uploading latest $DIRECTOR_CPI/$STEMCELL_OS stemcell..."
-  STEMCELL_URL=$(bosh public stemcells --full | grep $DIRECTOR_CPI | grep $STEMCELL_OS | sort -nr | head -n1 | awk '{ print $4 }')
   bosh upload stemcell $STEMCELL_URL
 fi
 STEMCELL=${STEMCELL:-$(latest_uploaded_stemcell)}
@@ -73,17 +104,16 @@ perl -pi -e "s/PLACEHOLDER-DIRECTOR-UUID/$DIRECTOR_UUID/g" $tmpdir/stub-with-uui
 perl -pi -e "s/NAME/$NAME/g" $tmpdir/stub-with-uuid.yml
 perl -pi -e "s/STEMCELL/$STEMCELL/g" $tmpdir/stub-with-uuid.yml
 
-spiff merge \
+if ! [ -x "$(command -v spruce)" ]; then
+  echo 'spruce is not installed. Please download at https://github.com/geofffranks/spruce/releases' >&2
+fi
+
+spruce merge --prune meta \
   $templates/deployment.yml \
   $templates/jobs.yml \
-  $templates/update-${update_template}.yml \
   $templates/infrastructure-${infrastructure}.yml \
   $tmpdir/stub-with-uuid.yml \
   $* > $tmpdir/$NAME-manifest.yml
 
 bosh deployment $tmpdir/$NAME-manifest.yml
 bosh status
-
-if [[ "${update_template}" = "firsttime" ]]; then
-  echo "REMEMBER: After deploying initial cluster, re-run 'make_manifest' to restrict updates to one node at a time"
-fi
