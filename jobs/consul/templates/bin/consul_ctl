@@ -65,9 +65,8 @@ EOF
     done
 
     chpst -u <%= user %>:<%= user %> consul agent $config_dir \
-      -pid-file $PIDFILE \
-         >>$LOG_DIR/$JOB_NAME.stdout.log \
-         2>>$LOG_DIR/$JOB_NAME.stderr.log &
+          -pid-file $PIDFILE \
+          >>$LOG_DIR/$JOB_NAME.log 2>&1 &
 
     ;;
 
