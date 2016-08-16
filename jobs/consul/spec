@@ -25,8 +25,11 @@ properties:
   consul.join_hosts:
     description: Hostnames/IPs representing all initial consul servers. Use this or consul.join_host / consul.size
   consul.default_recursor:
-    description: DNS recursor to use if BOSH not provising DNS
+    description: DNS recursor to use if BOSH not providing DNS
     default: 8.8.8.8
+  consul.resolvconf_override:
+    description: Force the host to use only the local consul agent for dns.
+    default: false
 
   consul.ssl_ca:
     description: "The content of the ca file"

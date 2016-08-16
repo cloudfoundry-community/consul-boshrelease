@@ -23,6 +23,11 @@ case $1 in
       sed -i -e '1i nameserver 127.0.0.1' /etc/resolv.conf
     fi
 
+    <% if p("consul.resolvconf_override") == true %>
+      resolvconf --disable-updates
+      echo "nameserver 127.0.0.1" > /etc/resolv.conf
+    <% end %>
+
     mkdir -p /var/vcap/data/consul
     chown <%= user %>:<%= user %> /var/vcap/data/consul
     config_dir="-config-dir /var/vcap/data/consul "
