@@ -20,8 +20,7 @@ case $1 in
     setcap cap_net_bind_service=+ep $(readlink -nf /var/vcap/packages/consul/bin/consul)
 
     <% if p("consul.resolvconf_override") == true %>
-    echo "nameserver 127.0.0.1" > /run/resolvconf/resolv.conf
-    resolvconf -u
+    echo "nameserver 127.0.0.1" > /etc/resolv.conf
     <% else %>
     if ! grep -q 127.0.0.1 /etc/resolv.conf; then
       sed -i -e '1i nameserver 127.0.0.1' /etc/resolv.conf
