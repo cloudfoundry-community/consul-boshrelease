@@ -15,7 +15,7 @@ jobs:
     persistent_disk: (( grab meta.persistent_disk ))
     properties:
       consul:
-        join_host: (( string "0.consul-z1.consul1." meta.environment "." meta.dns_root ))
+        join_host: (( concat "0.consul-z1.consul1." meta.environment "." meta.dns_root ))
 
 compilation:
   cloud_properties:
