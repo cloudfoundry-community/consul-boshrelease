@@ -39,6 +39,8 @@
     config[:ca_file] = '/var/vcap/jobs/consul/consul/ca.cert'
     config[:cert_file] = '/var/vcap/jobs/consul/consul/consul.cert'
     config[:key_file] = '/var/vcap/jobs/consul/consul/consul.key'
+    config[:ports][:https] = 8500
+    config[:ports][:http] = -1
   end
 
   if p('consul.encrypt', nil)
