@@ -1,0 +1,32 @@
+---
+name: consul-snapshot
+packages:
+- consul-snapshot
+templates:
+  bin/consul-snapshot_ctl: bin/consul-snapshot_ctl
+  bin/monit_debugger: bin/monit_debugger
+  data/properties.sh.erb: data/properties.sh
+
+properties:
+  consul-snapshot.s3bucket:
+    description: the s3 bucket where backups should be delivered
+  consul-snapshot.s3region:
+    description: the region the s3 bucket is located
+  consul-snapshot.aws_access_key_id:
+    description: the access key id used to access the bucket
+  consul-snapshot.aws_secret_access_key:
+    description: the secret key used to access the bucket
+  consul-snapshot.backupinterval:
+    description: how often you want the backup to run in seconds
+  consul-snapshot.crypto_password:
+    description: sets a password for encrypting and decrypting backups
+  consul-snapshot.snapshot_tmp_dir:
+    description: sets the directory for temporary files, defaults to "/tmp"
+    default: /tmp
+  consul-snapshot.consul_snapshot_upload_prefix:
+    description: an arbitrary prefix to be prepended to the name of each uploaded object, e.g., consul-dc1. default is backups
+    default: backups
+  consul-snapshot.consul_snapshot_s3_sse:
+    description: optional server-side encryption algorithm, e.g., aes256 or aws:kms
+  consul-snapshot.consul_snapshot_s3_sse_kms_key_id:
+    description: optional kms key id, if server-side encryption is used, and aws:kms is used for the encryption algorithm

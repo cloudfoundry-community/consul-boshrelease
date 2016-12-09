@@ -1,0 +1,5 @@
+check process consul-snapshot
+  with pidfile /var/vcap/sys/run/consul-snapshot/consul-snapshot.pid
+  start program "/var/vcap/jobs/consul-snapshot/bin/monit_debugger consul-snapshot_ctl '/var/vcap/jobs/consul-snapshot/bin/consul-snapshot_ctl start'"
+  stop program "/var/vcap/jobs/consul-snapshot/bin/monit_debugger consul-snapshot_ctl '/var/vcap/jobs/consul-snapshot/bin/consul-snapshot_ctl stop'"
+  group vcap

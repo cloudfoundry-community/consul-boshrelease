@@ -1,0 +1,36 @@
+#!/bin/bash
+JOB_NAME=consul-snapshot
+JOB_DIR=/var/vcap/jobs/$JOB_NAME
+
+PACKAGE_DIR=/var/vcap/packages/$JOB_NAME
+
+RUN_DIR=/var/vcap/sys/run/$JOB_NAME
+LOG_DIR=/var/vcap/sys/log/$JOB_NAME
+PIDFILE=${RUN_DIR}/$JOB_NAME.pid
+
+source /var/vcap/jobs/$JOB_NAME/data/properties.sh
+
+case $1 in
+
+  start)
+    mkdir -p $RUN_DIR $LOG_DIR
+    chown -R vcap:vcap $RUN_DIR $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    cd $PACKAGE_DIR
+
+    exec $PACKAGE_DIR/bin/consul-snapshot backup \
+         >>$LOG_DIR/$JOB_NAME.log 2>&1
+
+    ;;
+
+  stop)
+    kill -9 `cat $PIDFILE`
+    rm -f $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: consul-snapshot_ctl {start|stop}" ;;
+esac
