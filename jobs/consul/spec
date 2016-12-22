@@ -15,15 +15,20 @@ templates:
   data/properties.sh.erb: data/properties.sh
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
+
+consumes:
+- name: consul_servers
+  type: consul_servers
+
+provides:
+- name: consul_servers
+  type: consul_servers
+
 properties:
 
   consul.user:
     description: User that consul is ran under
     default: vcap
-  consul.join_host:
-    description: Hostname/IP for initial cluster node for other consul servers to join.
-  consul.join_hosts:
-    description: Hostnames/IPs representing all initial consul servers. Use this or consul.join_host / consul.size
   consul.default_recursor:
     description: DNS recursor to use if BOSH not providing DNS
     default: 8.8.8.8
