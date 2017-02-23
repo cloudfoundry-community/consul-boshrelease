@@ -8,4 +8,6 @@ builds:
     version: '20'
   2af8d653-2c88-4fab-bcab-aaa8b3a7a060:
     version: 21.0.0
+  85af3a51-6127-4769-b617-8a911a318b07:
+    version: 22.0.0
 format-version: '2'
