@@ -21,7 +21,6 @@ jobs:
         static_ips: (( static_ips(1, 2, 3) ))
     properties:
       consul:
-        join_hosts: (( grab jobs.consul.networks.consul1.static_ips ))
         default_recursor: (( grab meta.consul.default_recursor ))
 
 compilation:
