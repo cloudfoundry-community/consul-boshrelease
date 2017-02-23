@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+export S3BUCKET=<%= p("consul-snapshot.s3bucket", "") %>
+export S3REGION=<%= p("consul-snapshot.s3region", "") %>
+export AWS_ACCESS_KEY_ID=<%= p("consul-snapshot.aws_access_key_id", "") %>
+export AWS_SECRET_ACCESS_KEY=<%= p("consul-snapshot.aws_secret_access_key", "") %>
+export BACKUPINTERVAL=<%= p("consul-snapshot.backupinterval", "") %>
+export CRYPTO_PASSWORD=<%= p("consul-snapshot.crypto_password", "") %>
+export SNAPSHOT_TMP_DIR=<%= p("consul-snapshot.snapshot_tmp_dir", "") %>
+export CONSUL_SNAPSHOT_UPLOAD_PREFIX=<%= p("consul-snapshot.consul_snapshot_upload_prefix", "") %>
+export CONSUL_SNAPSHOT_S3_SSE=<%= p("consul-snapshot.consul_snapshot_s3_sse", "") %>
+export CONSUL_SNAPSHOT_S3_SSE_KMS_KEY_ID=<%= p("consul-snapshot.consul_snapshot_s3_sse_kms_key_id", "") %>
