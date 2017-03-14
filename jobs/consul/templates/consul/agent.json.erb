@@ -17,6 +17,7 @@
     data_dir: '/var/vcap/store/consul',
     ui_dir: '/var/vcap/packages/consul-ui',
     node_name: "#{spec.deployment}-#{name}-#{index}",
+    node_id: "#{spec.id}",
     bind_addr: '0.0.0.0',
     client_addr: client_addr,
     advertise_addr: my_ip,
