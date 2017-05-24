@@ -16,6 +16,7 @@ consul/consul_0.7.5_linux_amd64.zip:
   sha: b2defc1133dd2cb97fd43c8736ad91ecd3f8dae0
 consul/consul_0.8.3_linux_amd64.zip:
   size: 9715622
+  object_id: 40567946-de3c-480d-60a7-c9e540c80744
   sha: b7939a6986e8f0213b66ff2aae10d40832005ed0
 envconsul/envconsul_0.3.0_linux_amd64.tar.gz:
   size: 2023091
