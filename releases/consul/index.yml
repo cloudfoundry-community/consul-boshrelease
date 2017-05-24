@@ -10,4 +10,6 @@ builds:
     version: 21.0.0
   85af3a51-6127-4769-b617-8a911a318b07:
     version: 22.0.0
+  e36cc673-217c-4ee0-86d9-3f6fdb62238d:
+    version: 22.0.1
 format-version: '2'
