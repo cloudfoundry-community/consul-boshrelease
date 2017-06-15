@@ -14,4 +14,6 @@ builds:
     version: 22.0.1
   88ab59aa-e0cb-405c-92b8-00ac4519f5ea:
     version: 22.0.2
+  ccb91aae-2057-4a34-8c69-bb110ede0a3d:
+    version: 22.0.3
 format-version: '2'
