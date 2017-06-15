@@ -75,11 +75,11 @@ EOF
     ;;
 
   stop)
-    <% if_p("consul.ssl_ca", "consul.ssl_cert", "consul.ssl_key") do |ca, cert, key| %>
+    <% if_p("consul.ssl_ca", "consul.ssl_cert", "consul.ssl_key") do %>
     export CONSUL_HTTP_SSL=true
-    export CONSUL_CACERT=<%= ca %>
-    export CONSUL_CLIENT_CERT=<%= cert %>
-    export CONSUL_CLIENT_KEY=<%= key %>
+    export CONSUL_CACERT=$JOB_DIR/consul/ca.cert
+    export CONSUL_CLIENT_CERT=$JOB_DIR/consul/consul.cert
+    export CONSUL_CLIENT_KEY=$JOB_DIR/consul/consul.key
     <% end %>
     consul leave
     ;;
