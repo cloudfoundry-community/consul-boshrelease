@@ -1,5 +1,0 @@
----
-name: consul-ui
-dependencies: []
-files:
-- consul-ui/*_web_ui.zip

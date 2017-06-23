@@ -15,7 +15,7 @@
 
   config = {
     data_dir: '/var/vcap/store/consul',
-    ui_dir: '/var/vcap/packages/consul-ui',
+    ui: true,
     node_name: "#{spec.deployment}-#{name}-#{index}",
     node_id: "#{spec.id}",
     bind_addr: '0.0.0.0',
