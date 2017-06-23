@@ -7,7 +7,7 @@ set -u # report the usage of uninitialized variables
 # $BOSH_INSTALL_TARGET - where you copy/install files to be included in package
 export HOME=/var/vcap
 
-export CONSUL_VERSION=0.8.3
+export CONSUL_VERSION=0.8.4
 
 cd consul
 unzip consul_${CONSUL_VERSION}_linux_amd64.zip

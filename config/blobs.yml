@@ -1,3 +1,4 @@
+---
 consul-snapshot/consul-snapshot_linux_amd64:
   size: 13967256
   object_id: 39c6fb32-9605-4eb8-9310-fafe53dbcb58
@@ -22,3 +23,7 @@ envconsul/envconsul_0.3.0_linux_amd64.tar.gz:
   size: 2023091
   object_id: 3f4ac3e3-6c93-4373-bcbb-11979e504784
   sha: 14d879bfcbbbd7025193dee981dadf8858eaa669
+consul/consul_0.8.4_linux_amd64.zip:
+  object_id: 8e065ff9-1da4-4722-a913-56f745150e4b
+  sha: f72472431a9e53755887a52140bce4220d80db7e
+  size: 9883784
