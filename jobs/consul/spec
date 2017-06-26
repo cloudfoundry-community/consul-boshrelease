@@ -41,6 +41,9 @@ properties:
     description: "The content of the cert file"
   consul.ssl_key:
     description: "The content of the key file"
+  consul.verify_incoming:
+    description: "Should requests coming in to the consul servers be verified"
+    default: true
   consul.server:
     description: Should the agent run in server or client mode
     default: true

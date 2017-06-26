@@ -31,7 +31,7 @@
   }
 
   if ssl_ca and ssl_cert and ssl_key
-    config[:verify_incoming] = true
+    config[:verify_incoming] = p('consul.verify_incoming')
     config[:verify_outgoing] = true
     config[:ca_file] = '/var/vcap/jobs/consul/consul/ca.cert'
     config[:cert_file] = '/var/vcap/jobs/consul/consul/consul.cert'
