@@ -18,4 +18,6 @@ builds:
     version: 22.0.3
   2564383a-d5ce-4697-9978-701c464739f4:
     version: 22.1.0
+  a64d0236-a587-4653-939a-c2a86db10003:
+    version: 23.0.0
 format-version: '2'
