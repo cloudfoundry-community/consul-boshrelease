@@ -1,8 +1,6 @@
 <%
   require 'json'
 
-  my_ip = spec.networks.send(spec.networks.methods(false).first).ip
-  my_host = spec.networks.send(spec.networks.methods(false).first).dns_record_name
   join_hosts = link('consul_servers').instances.collect { |server| server.address }
   cluster_size = join_hosts.size
   is_server = p('consul.server', true)
@@ -20,7 +18,7 @@
     node_id: "#{spec.id}",
     bind_addr: '0.0.0.0',
     client_addr: client_addr,
-    advertise_addr: my_ip,
+    advertise_addr: spec.ip,
     leave_on_terminate: p('consul.leave_on_terminate'),
     log_level: 'INFO',
     domain: p('consul.domain', 'consul'),
