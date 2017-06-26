@@ -22,6 +22,10 @@ consumes:
 provides:
 - name: consul_servers
   type: consul_servers
+  properties:
+  - consul.ssl_ca
+  - consul.ssl_cert
+  - consul.ssl_key
 
 properties:
 
