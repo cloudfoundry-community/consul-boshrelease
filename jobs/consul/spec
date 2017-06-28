@@ -28,6 +28,8 @@ properties:
   consul.user:
     description: User that consul is ran under
     default: vcap
+  consul.datacenter:
+    description: The datacenter consul is a part of
   consul.default_recursor:
     description: DNS recursor to use if BOSH not providing DNS
     default: 8.8.8.8
