@@ -1,1 +1,0 @@
-* Add setting for datacenter
