@@ -46,6 +46,8 @@ properties:
   consul.verify_incoming:
     description: "Should requests coming in to the consul servers be verified"
     default: true
+  consul.http_port:
+    description: Enable listening on an alternative http port (also active when ssl is configured). It is advised only to set this when also setting client_addr to '127.0.0.1' to only allow local http access.
   consul.server:
     description: Should the agent run in server or client mode
     default: true

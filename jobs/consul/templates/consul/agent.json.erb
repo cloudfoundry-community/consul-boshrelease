@@ -44,6 +44,10 @@
     config[:ports][:http] = -1
   end
 
+  if p('consul.http_port', nil)
+    config[:ports][:http] = p('consul.http_port')
+  end
+
   if p('consul.encrypt', nil)
     config[:encrypt] = p('consul.encrypt')
   end
