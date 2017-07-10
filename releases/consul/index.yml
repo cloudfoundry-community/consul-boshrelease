@@ -26,4 +26,6 @@ builds:
     version: 23.0.2
   43d061af-eada-47b1-aaa5-babb7e4b4181:
     version: 23.0.3
+  954c1d47-f470-4b4f-b326-c4d4aeea2334:
+    version: 23.0.4
 format-version: '2'
