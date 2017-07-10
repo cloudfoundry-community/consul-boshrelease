@@ -68,7 +68,7 @@ EOF
       export config_dir="${config_dir}-config-dir ${consul_run_dir} "
     done
 
-    chpst -u <%= user %>:<%= user %> consul agent $config_dir \
+    chpst -u <%= user %>:<%= user %> /var/vcap/packages/consul/bin/consul agent $config_dir \
           -pid-file $PIDFILE \
           >>$LOG_DIR/$JOB_NAME.log 2>&1 &
 
