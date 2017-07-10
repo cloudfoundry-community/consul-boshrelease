@@ -24,4 +24,6 @@ builds:
     version: 23.0.1
   ef400043-699c-4e7c-ba50-745e493b64a9:
     version: 23.0.2
+  43d061af-eada-47b1-aaa5-babb7e4b4181:
+    version: 23.0.3
 format-version: '2'
