@@ -1,0 +1,37 @@
+---
+name: consul
+
+# update: section explicitly missing so operator must choose operators/firsttime.yml or operators/existing.yml
+
+instance_groups:
+- name: consul
+  azs: [z1, z2, z3]
+  instances: 3
+  vm_type: default
+  stemcell: default
+  persistent_disk_type: 1GB
+  networks: [{name: default}]
+  jobs:
+  - release: consul
+    name: consul
+    provides:
+      consul_servers:
+        as: consul_leaders
+        shared: true
+    consumes:
+      consul_servers: { from: consul_leaders }
+
+variables: []
+
+stemcells:
+- alias: default
+  os: ubuntu-trusty
+  version: latest
+
+# update: section explicitly missing so operator must choose operators/firsttime.yml or operators/existing.yml
+
+releases:
+- name: consul
+  version: 23.0.4
+  url: https://bosh.io/d/github.com/cloudfoundry-community/consul-boshrelease?v=23.0.4
+  sha1: 81b838bbe40eb6a826da6e78b2ac833fa6b74a16

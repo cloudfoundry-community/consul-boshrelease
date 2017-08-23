@@ -1,0 +1,4 @@
+---
+- type: replace
+  path: /instance_groups/name=consul/jobs/name=consul/properties?/consul/default_recursor
+  value: {{consul-recursor}}
