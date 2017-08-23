@@ -9,8 +9,22 @@ One of the fastest ways to get [consul](https://www.consul.io/) running on any i
 ## Usage
 
 To use this bosh release, first upload it to your bosh:
+<<<<<<< HEAD
 
 ```
+export BOSH_ENVIRONMENT=<alias>
+export BOSH_DEPLOYMENT=consul
+=======
+>>>>>>> bosh2 manifest + updated README
+
+git clone https://github.com/cloudfoundry-community/consul-boshrelease.git
+cd consul-boshrelease
+bosh deploy manifests/consul.yml -o manifests/operators/firsttime.yml
+```
+<<<<<<< HEAD
+
+If your BOSH does not have Credhub/Config Server, then remember ` --vars-store` to allow generation of certificates.
+=======
 export BOSH_ENVIRONMENT=<alias>
 export BOSH_DEPLOYMENT=consul
 
@@ -18,8 +32,7 @@ git clone https://github.com/cloudfoundry-community/consul-boshrelease.git
 cd consul-boshrelease
 bosh deploy manifests/consul.yml -o manifests/operators/firsttime.yml
 ```
-
-If your BOSH does not have Credhub/Config Server, then remember ` --vars-store` to allow generation of certificates.
+>>>>>>> bosh2 manifest + updated README
 
 The `consul.yml` manifest is deliberately missing the required `update:` section of the manifest. This is to ensure that you - the operator - choose the correct `update:` section - either `firsttime.yml` for the first deployment (deploy all instances at the same time so they form a cluster) or `existing.yml` for all subsequent deployments (rolling updates).
 

@@ -20,6 +20,7 @@ instance_groups:
         shared: true
     consumes:
       consul_servers: { from: consul_leaders }
+<<<<<<< HEAD
     properties:
       consul:
         ssl_ca: ((consul-ca.ca))
@@ -43,6 +44,10 @@ variables:
     alternative_names:
     - 127.0.0.1
     - "*.consul.default.consul.bosh"
+=======
+
+variables: []
+>>>>>>> bosh2 manifest + updated README
 
 stemcells:
 - alias: default
