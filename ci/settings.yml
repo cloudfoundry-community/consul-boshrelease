@@ -1,27 +1,34 @@
 ---
 meta:
   name:    consul
-  release: Consul
   target:  sw
-  url:     https://ci.vsphere.starkandwayne.com
+  url:     https://ci.starkandwayne.com
 
-  initial_version: 21.0.0
+  initial_version: 23.0.4
+
+  manifest:
+    operator_file_paths: manifests/operators/firsttime.yml
 
   bosh-lite:
-    target: https://10.58.111.44:25555
-    deployment: consul-warden
+    target: https://10.58.111.49:25555
+    username: (( vault "secret/bosh-lites/lite49/users/admin:username" ))
+    password: (( vault "secret/bosh-lites/lite49/users/admin:password" ))
+    cacert:   (( vault "secret/bosh-lites/lite49/certs:rootCA.pem" ))
 
   aws:
+    bucket: (( grab meta.pipeline ))
     access_key: (( vault "secret/aws/cfcommunity:access" ))
     secret_key: (( vault "secret/aws/cfcommunity:secret" ))
 
   github:
     owner:  cloudfoundry-community
-    repo:   consul-boshrelease
-    branch: master
-    private_key:  (( vault "secret/pipelines/consul-boshrelease/github:private" ))
-    access_token: (( vault "secret/pipelines/consul-boshrelease/github:token" ))
+    repo:   (( grab meta.pipeline ))
+    branch: ci-bosh2 # TODO: change back to master when merged
+    private_key:  (( vault "secret/pipelines/shared/github:private_key" ))
+    access_token: (( vault "secret/pipelines/shared/github:access_token" ))
 
   slack:
-    webhook: (( vault "secret/pipelines/consul-boshrelease/slack:webhook" ))
-    channel: '#botspam'
+    webhook:  (( vault "secret/pipelines/" meta.pipeline "/slack:webhook" ))
+    channel:  "#consul-boshrelease"
+    username: starkandwayne-ci
+    icon:     https://cl.ly/0o401h3l1x3R/logo-50x50.png
