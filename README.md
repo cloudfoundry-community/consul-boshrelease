@@ -19,6 +19,8 @@ cd consul-boshrelease
 bosh deploy manifests/consul.yml -o manifests/operators/firsttime.yml
 ```
 
+If your BOSH does not have Credhub/Config Server, then remember ` --vars-store` to allow generation of certificates.
+
 The `consul.yml` manifest is deliberately missing the required `update:` section of the manifest. This is to ensure that you - the operator - choose the correct `update:` section - either `firsttime.yml` for the first deployment (deploy all instances at the same time so they form a cluster) or `existing.yml` for all subsequent deployments (rolling updates).
 
 If you get the following error then you have forgotten to provide either of these two operator files:
