@@ -1,6 +1,0 @@
----
-jobs:
-  - name: consul
-    update:
-      canary: 0
-      max_in_flight: 1
