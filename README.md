@@ -1,97 +1,39 @@
-BOSH release for consul
-=======================
+# Deploy Consul to BOSH
 
-Use this BOSH release to either:
+Hashicorp [Consul](https://www.consul.io/) makes it simple for services to register themselves and to discover other services via a DNS or HTTP interface. It also offers flexible key/value storage.
 
--	deploy a cluster of consul servers; OR
--	upgrade an existing BOSH deployment to advertise or discover services
+One of the fastest ways to get [consul](https://www.consul.io/) running on any infrastructure is to deploy this BOSH release.
 
-The [redis-boshrelease](https://github.com/cloudfoundry-community/redis-boshrelease) is an example BOSH release that can use this consul release to advertise itself to other consul consumers.
+* Discussions and CI notifications at [#consul-boshrelease channel](https://cloudfoundry.slack.com/messages/C6SUUTMDJ/) on https://slack.cloudfoundry.org
 
-Installation
-------------
+## Usage
 
 To use this bosh release, first upload it to your bosh:
 
 ```
-bosh upload release releases/consul/consul-19.yml
+export BOSH_ENVIRONMENT=<alias>
+export BOSH_DEPLOYMENT=consul
+
+git clone https://github.com/cloudfoundry-community/consul-boshrelease.git
+cd consul-boshrelease
+bosh deploy manifests/consul.yml -o manifests/operators/firsttime.yml
 ```
 
-## Usage
+If your BOSH does not have Credhub/Config Server, then remember ` --vars-store` to allow generation of certificates.
 
-### First-time cluster deployment
+The `consul.yml` manifest is deliberately missing the required `update:` section of the manifest. This is to ensure that you - the operator - choose the correct `update:` section - either `firsttime.yml` for the first deployment (deploy all instances at the same time so they form a cluster) or `existing.yml` for all subsequent deployments (rolling updates).
 
-For [bosh-lite](https://github.com/cloudfoundry/bosh-lite), you can quickly create a deployment manifest & deploy a 3-node cluster:
-
-```
-templates/make_manifest warden
-bosh -n deploy
-```
-
-View the Consul UI on http://10.244.4.2:8500/ui
-
-For AWS EC2, create a 3-node cluster:
+If you get the following error then you have forgotten to provide either of these two operator files:
 
 ```
-templates/make_manifest aws-ec2
-bosh -n deploy
+Task 1045 | 23:24:04 | Preparing deployment: Preparing deployment (00:00:00)
+                     L Error: Required property 'update' was not specified in object ({"instance_groups"=>[{"azs"=>["z1", "z2", "z3"], "instances"=>3, "jobs"=>...
 ```
 
-### Upgrading cluster
+### Subsequent deploys/upgrades
 
-The first time deployment will boot all VMs simultaneously. Afterwards we want to ensure at least one of the VMs is running at all times. So we need to change the manifest.
-
-Running the `make_manifest` command again for an existing deployment will change the manifest.
+Replace `manifests/operators/firsttime.yml` above with `manifests/operators/existing.yml` so that each instance is updated one at a time:
 
 ```
-templates/make_manifest warden
-bosh -n deploy
-```
-
-Will include this change:
-
-```
-Jobs
-consul_z1
-  update
-    ± max_in_flight:
-      - 50
-      + 1
-```
-
-Now onwards, each consul server node will be updated only when the other nodes are not being updated.
-
-### Override security groups
-
-For AWS & Openstack, the default deployment assumes there is a `default` security group. If you wish to use a different security group(s) then you can pass in additional configuration when running `make_manifest` above.
-
-Create a file `my-networking.yml`:
-
-```yaml
----
-networks:
-  - name: consul1
-    type: dynamic
-    cloud_properties:
-      security_groups:
-        - consul
-```
-
-Where `- consul` means you wish to use an existing security group called `consul`.
-
-You now suffix this file path to the `make_manifest` command:
-
-```
-templates/make_manifest openstack-nova my-networking.yml
-bosh -n deploy
-```
-
-Development
------------
-
-Requires Ruby 1.9+ for consul-ui's sass buildtool.
-
-```
-bundle install
-bosh create release --force
+bosh deploy manifests/consul.yml -o manifests/operators/existing.yml
 ```
