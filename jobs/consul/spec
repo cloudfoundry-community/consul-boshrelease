@@ -61,6 +61,10 @@ properties:
   consul.leave_on_terminate:
     description: If enabled, gracefully leave the cluster when the process shuts down.
     default: false
+  consul.http_local:
+    description: If enabled AND when ssl_ca, ssl_cert and ssl_key are set, this toggles use of HTTP for local consul communication by scripts. This prevents failures to stop/start the service when you have configured the agent for SSL client cert authentication or are using multiple ports/addresses to listen
+    default: false
+
 
   consul.agent_config:
     description: override hash for the consul agent.json configuration
