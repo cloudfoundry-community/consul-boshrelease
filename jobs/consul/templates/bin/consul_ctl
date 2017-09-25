@@ -76,10 +76,12 @@ EOF
 
   stop)
     <% if_p("consul.ssl_ca", "consul.ssl_cert", "consul.ssl_key") do %>
+      <% if !p("consul.http_local") %>
     export CONSUL_HTTP_SSL=true
     export CONSUL_CACERT=$JOB_DIR/consul/ca.cert
     export CONSUL_CLIENT_CERT=$JOB_DIR/consul/consul.cert
     export CONSUL_CLIENT_KEY=$JOB_DIR/consul/consul.key
+      <% end %>
     <% end %>
     /var/vcap/packages/consul/bin/consul leave
     ;;
