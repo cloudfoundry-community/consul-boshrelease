@@ -52,6 +52,11 @@
     config[:encrypt] = p('consul.encrypt')
   end
 
+  if p('consul.wan_servers', nil)
+    config[:start_join_wan] = p('consul.wan_servers')
+    config[:retry_join_wan] = p('consul.wan_servers')
+  end
+
   if (networks = spec.networks.methods(false)) && dns = spec.networks.send(networks.first).dns
     config[:recursor] = dns.first
   else
