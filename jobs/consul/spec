@@ -74,3 +74,6 @@ properties:
 
   networks.apps:
     description: Deployment's internal name for the network interface to discover own IP
+
+  consul.wan_servers:
+    description: A list of wan hosts to be connected.
