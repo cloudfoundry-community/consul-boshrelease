@@ -1,0 +1,43 @@
+name: consul
+version: 24.0.0
+commit_hash: f681664
+uncommitted_changes: false
+jobs:
+- name: consul
+  version: 3f633b309310e9d33658a74cbc38b582a3fb9e5a
+  fingerprint: 3f633b309310e9d33658a74cbc38b582a3fb9e5a
+  sha1: b454eb7521988c9f1a797f699642b38a77706508
+- name: consul-snapshot
+  version: 1492f398a2e6115be3a02d2f23b1113f4374bb01
+  fingerprint: 1492f398a2e6115be3a02d2f23b1113f4374bb01
+  sha1: 168915b6c1ea9110f7f124f890f2a6b673dad59b
+- name: vm-consul
+  version: 9c172bc5cb4eead577c645230f3f6a0aa3a5d4c4
+  fingerprint: 9c172bc5cb4eead577c645230f3f6a0aa3a5d4c4
+  sha1: 6b8caab362d965d12569935b8aa330f2969205bf
+packages:
+- name: consul
+  version: 30f12d1e70d89f28b34a433d2b885a03ae41adae
+  fingerprint: 30f12d1e70d89f28b34a433d2b885a03ae41adae
+  sha1: 8c6994b927cf5c06c58753e6e0b94e683b923602
+  dependencies: []
+- name: consul-snapshot
+  version: 3b798d86de55732803269b76f922d7f46c93da03
+  fingerprint: 3b798d86de55732803269b76f922d7f46c93da03
+  sha1: c8647cbcd9eb7a5539e9fae097bad25c1b1617bb
+  dependencies:
+  - consul
+- name: consul-template
+  version: 561a4a5d99c375822876d5482ed24f790a0e216b
+  fingerprint: 561a4a5d99c375822876d5482ed24f790a0e216b
+  sha1: 35d52b6218fda1a16b670bf281aed95dd40a843c
+  dependencies: []
+- name: envconsul
+  version: 90d4cc3b4e290c3833cf5e32d0b5c99f4a63c0be
+  fingerprint: 90d4cc3b4e290c3833cf5e32d0b5c99f4a63c0be
+  sha1: dc967e4a201591f81fa800e6f9ca0c08dd28038b
+  dependencies: []
+license:
+  version: 2d6319fff180f187631966e35586d814acc90b39
+  fingerprint: 2d6319fff180f187631966e35586d814acc90b39
+  sha1: 0eee51dd90bd30403d0740caf6f3c8d4b446e229

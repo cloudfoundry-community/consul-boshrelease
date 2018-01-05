@@ -53,6 +53,6 @@ stemcells:
 
 releases:
 - name: consul
-  version: 23.0.4
-  url: https://bosh.io/d/github.com/cloudfoundry-community/consul-boshrelease?v=23.0.4
-  sha1: 81b838bbe40eb6a826da6e78b2ac833fa6b74a16
+  version: 24.0.0
+  url: https://github.com/cloudfoundry-community/consul-boshrelease/releases/download/v24.0.0/consul-24.0.0.tgz
+  sha1: 8ac212187ea47d41c71e87d35a7ea8895f85ea8c
