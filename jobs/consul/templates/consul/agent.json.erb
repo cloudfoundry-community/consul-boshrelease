@@ -4,10 +4,9 @@
   join_hosts = link('consul_servers').instances.collect { |server| server.address }
   cluster_size = join_hosts.size
   is_server = p('consul.server', true)
-  #client_addr = p('consul.client_addr', '0.0.0.0')
+  client_addr = p('consul.client_addr', '0.0.0.0')
   agent_config = p('consul.agent_config', nil)
 
-  # test
   ssl_ca = p("consul.ssl_ca", nil)
   ssl_cert = p("consul.ssl_cert", nil)
   ssl_key = p("consul.ssl_key", nil)
@@ -41,8 +40,8 @@
     ui: true,
     node_name: "#{spec.deployment}-#{name}-#{index}",
     node_id: "#{spec.id}",
-    bind_addr: '0.0.0.0',
-    client_addr: discover_external_ip,
+    bind_addr: discover_external_ip,
+    client_addr: client_addr,
     advertise_addr: spec.ip,
     leave_on_terminate: p('consul.leave_on_terminate'),
     log_level: 'INFO',
@@ -75,6 +74,11 @@
 
   if p('consul.encrypt', nil)
     config[:encrypt] = p('consul.encrypt')
+  end
+
+  if p('consul.wan_servers', nil)
+    config[:start_join_wan] = p('consul.wan_servers')
+    config[:retry_join_wan] = p('consul.wan_servers')
   end
 
   if (networks = spec.networks.methods(false)) && dns = spec.networks.send(networks.first).dns
