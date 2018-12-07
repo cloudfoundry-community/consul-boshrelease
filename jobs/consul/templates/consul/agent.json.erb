@@ -4,7 +4,7 @@
   join_hosts = link('consul_servers').instances.collect { |server| server.address }
   cluster_size = join_hosts.size
   is_server = p('consul.server', true)
-  #client_addr = p('consul.client_addr', '0.0.0.0')
+  client_addr = p('consul.client_addr', '0.0.0.0')
   agent_config = p('consul.agent_config', nil)
 
   # test
@@ -24,17 +24,6 @@
     end
     network.ip
   end
-  def confab
-    p('confab')
-  end
-  def consul
-    config = p('consul')
-    if config['agent']['node_name_includes_id']
-      config['agent']['node_name'] = "#{spec.name}-#{spec.id}"
-    end
-    config
-  end
-
 
   config = {
     data_dir: '/var/vcap/store/consul',
@@ -42,7 +31,7 @@
     node_name: "#{spec.deployment}-#{name}-#{index}",
     node_id: "#{spec.id}",
     bind_addr: discover_external_ip,
-    client_addr: discover_external_ip,
+    client_addr: client_addr,
     advertise_addr: spec.ip,
     leave_on_terminate: p('consul.leave_on_terminate'),
     log_level: 'INFO',
