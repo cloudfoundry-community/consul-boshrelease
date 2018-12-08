@@ -27,7 +27,10 @@ case $1 in
     fi
     <% end %>
 
-    mkdir -p /var/vcap/data/consul chown <%= user %>:<%= user %> /var/vcap/data/consul config_dir="-config-dir /var/vcap/data/consul "
+    mkdir -p /var/vcap/data/consul
+    chown <%= user %>:<%= user %> /var/vcap/data/consul
+    config_dir="-config-dir /var/vcap/data/consul "
+
     rm -f /var/vcap/data/consul/service-*.json
     <% if_p("consul.services") do |services| %>
       <% services.each do |service_name,service| %>
@@ -92,11 +95,7 @@ EOF
         end
         network.ip
       end
-
     %>
-
-
-
     /var/vcap/packages/consul/bin/consul leave --http-addr=<%= discover_external_ip %>
     ;;
 
