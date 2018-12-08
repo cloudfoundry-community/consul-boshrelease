@@ -96,7 +96,7 @@ EOF
         network.ip
       end
     %>
-    /var/vcap/packages/consul/bin/consul leave --http-addr=<%= discover_external_ip %>
+    /var/vcap/packages/consul/bin/consul leave --http-addr=<%= discover_external_ip.to_s + ":8500"%>
     ;;
 
   reload)
