@@ -31,7 +31,6 @@
     node_name: "#{spec.deployment}-#{name}-#{index}",
     node_id: "#{spec.id}",
     bind_addr: discover_external_ip,
-    client_addr: discover_external_ip,
     advertise_addr: spec.ip,
     leave_on_terminate: p('consul.leave_on_terminate'),
     log_level: 'INFO',

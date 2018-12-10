@@ -35,10 +35,10 @@ case $1 in
     setcap cap_net_bind_service=+ep $(readlink -nf /var/vcap/packages/consul/bin/consul)
 
     <% if p("consul.resolvconf_override") == true %>
-      echo "nameserver <%= discover_external_ip %>" > /etc/resolv.conf
+      echo "nameserver 127.0.0.1" > /etc/resolv.conf
     <% else %>
-    if ! grep -q <%= discover_external_ip %> /etc/resolv.conf; then
-      sed -i -e '1i nameserver <%= discover_external_ip %>' /etc/resolv.conf
+    if ! grep -q 127.0.0.1 /etc/resolv.conf; then
+      sed -i -e '1i nameserver 127.0.0.1' /etc/resolv.conf
     fi
     <% end %>
 
@@ -96,7 +96,7 @@ EOF
     export CONSUL_CLIENT_CERT=$JOB_DIR/consul/consul.cert
     export CONSUL_CLIENT_KEY=$JOB_DIR/consul/consul.key
     <% end %>
-    /var/vcap/packages/consul/bin/consul leave --http-addr=<%= discover_external_ip.to_s + ":8500"%>
+    /var/vcap/packages/consul/bin/consul leave
     ;;
 
   reload)
